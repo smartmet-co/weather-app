@@ -43,7 +43,6 @@ const WarningTypeFiltersList = ({
                 ) && styles.activeFilter,
               ]}>
               <WarningSymbol
-                severity={info.severity}
                 type={info.event as WarningType}
               />
             </View>
