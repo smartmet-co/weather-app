@@ -73,7 +73,6 @@ const WarningItem = ({
         ]}>
         <WarningSymbol
           type={info.event as WarningType}
-          severity={info.severity}
           size={32}
         />
         <View style={[styles.headingMainContent, { width: width - 136 }]}>
