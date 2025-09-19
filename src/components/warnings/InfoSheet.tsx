@@ -44,7 +44,7 @@ const InfoSheet: React.FC<InfoSheetProps> = ({ onClose }) => {
   const TypeRow = ({ type }: { type: WarningType }) => (
     <View style={styles.row}>
       <View style={[styles.iconWrapper]}>
-        <WarningSymbol type={type} severity="Moderate" />
+        <WarningSymbol type={type}/>
       </View>
       <Text style={[styles.text, { color: colors.hourListText }]}>
         {t(`warnings:types:${type}`).toLocaleLowerCase()}
