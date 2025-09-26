@@ -5,6 +5,7 @@ import { CustomTheme, SECONDARY_BLUE } from '@assets/colors';
 import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import WarningSymbol from '../WarningsSymbol';
+import { Config } from '@config';
 
 const WarningTypeFiltersList = ({
   warnings,
@@ -16,6 +17,14 @@ const WarningTypeFiltersList = ({
   activeWarnings: { severity: Severity; event: string }[];
 }) => {
   const { colors } = useTheme() as CustomTheme;
+  const { capViewSettings } = Config.get('warnings');
+
+  const colorMap: { [key in Severity]: string } = {
+    Moderate: 'yellow',
+    Severe: 'orange',
+    Extreme: 'red',
+  };
+
   return (
     <ScrollView
       style={styles.row}
@@ -33,7 +42,7 @@ const WarningTypeFiltersList = ({
                 styles.filterButton,
 
                 {
-                  backgroundColor: colors.background,
+                  backgroundColor: capViewSettings?.severityBackgroundInSymbol ? colorMap[info.severity] : colors.background,
                   borderColor: colors.background,
                 },
                 !activeWarnings.find(
@@ -43,7 +52,6 @@ const WarningTypeFiltersList = ({
                 ) && styles.activeFilter,
               ]}>
               <WarningSymbol
-                severity={info.severity}
                 type={info.event as WarningType}
               />
             </View>
