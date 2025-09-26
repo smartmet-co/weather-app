@@ -67,7 +67,7 @@ const DayDetails: React.FC<DayDetailsProps> = ({ clockType, warnings }) => {
                 })
               }>
               <View style={styles.iconPadding}>
-                <WarningSymbol type={type} />
+                <WarningSymbol type={type} severity={severity} />
               </View>
               <View style={styles.flex}>
                 <Text

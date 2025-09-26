@@ -1,15 +1,27 @@
 import Icon from '@components/common/Icon';
-import { WarningType } from '@store/warnings/types';
+import { Severity, WarningType } from '@store/warnings/types';
 import React from 'react';
+import { Config } from '@config';
+import { View } from 'react-native';
 
 type WarningSymbolProps = {
   type: WarningType;
   size?: number;
+  severity?: Severity
 };
 const WarningSymbol: React.FC<WarningSymbolProps> = ({
   type,
   size,
+  severity
 }) => {
+  const { capViewSettings } = Config.get('warnings');
+
+  const colorMap: { [key in Severity]: string } = {
+    Moderate: 'yellow',
+    Severe: 'orange',
+    Extreme: 'red',
+  };
+
   // map event-string to warning icon string
   const typeMap: { [key in WarningType]: string } = {
     'Severe weather warning': 'severe-weather-warning',
@@ -66,7 +78,15 @@ const WarningSymbol: React.FC<WarningSymbolProps> = ({
     name += `-${typeMap[type]}`;
   }
 
-  return <Icon name={name} width={size ?? 24} height={size ?? 24} />;
+  if (capViewSettings?.severityBackgroundInSymbol && severity) {
+    return (
+      <View style={[{ backgroundColor: colorMap[severity], borderRadius: (size ?? 24) / 2 }]}>
+        <Icon name={name} width={size ?? 24} height={size ?? 24} />
+      </View>
+    );
+  } else {
+    return <Icon name={name} width={size ?? 24} height={size ?? 24} />;
+  }
 };
 
 export default WarningSymbol;

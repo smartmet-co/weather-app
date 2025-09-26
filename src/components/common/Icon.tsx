@@ -121,6 +121,7 @@ import WarningsFlashFloodWatchDueToReservoirWaterDischarge from '@assets/images/
 import WarningsFlashFloodWarningDueToReservoirWaterDischarge from '@assets/images/warning icons/flash flood warning due reservoir water discharge.svg';
 import WarningsRiverFloodingWarning from '@assets/images/warning icons/river flooding warning.svg';
 
+import Warnings from '@assets/images/icons/warnings.svg';
 import WeatherSymbol from '@assets/images/icons/weather-symbol.svg';
 import Weather from '@assets/images/icons/weather.svg';
 import WindArrow from '@assets/images/icons/wind-arrow.svg';
@@ -404,6 +405,8 @@ const Icon: React.FC<CustomIconProps> = ({ name, ...props }) => {
     case 'warnings-river-flooding-warning' :
         return <WarningsRiverFloodingWarning {...(props as SvgProps)} />;
 
+    case 'warnings':
+      return <Warnings {...(props as SvgProps)} />;
     case 'weather-symbol':
       return <WeatherSymbol {...(props as SvgProps)} />;
     case 'weather':
