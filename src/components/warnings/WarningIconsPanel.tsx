@@ -172,7 +172,6 @@ const WarningIconsPanel: React.FC<WarningIconsPanelProps> = ({
                       <WarningIcon
                         type={type}
                         severity={severity}
-                        {...(type === 'wind' || type === 'seaWind' ? { physical: warnings[0].physical } : {})}
                       />
                     </View>
                   </View>
