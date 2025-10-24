@@ -59,7 +59,6 @@ export const getForecast = async (
       'moonPhase',
       'modtime',
       'dark',
-      'producer',
     ],
     ['geoid', 'epochtime'],
   ];
