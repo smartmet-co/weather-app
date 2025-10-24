@@ -62,6 +62,8 @@
 	<string>Laitteen sijaintia käytetään sijaintipohjaisten säätietojen esittämiseen.</string>
 	<key>NSNotificationsUsageDescription</key>
 	<string>Sovellus käyttää ilmoituksia varoitusten lähettämiseen.</string>
+	<key>RCTNewArchEnabled</key>
+	<true/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto-Thin.ttf</string>
@@ -86,5 +88,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIDesignRequiresCompatibility</key>
+	<true/>
 </dict>
 </plist>
