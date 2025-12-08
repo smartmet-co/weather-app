@@ -9,7 +9,8 @@ import {
   ViewStyle,
   View,
   AppState,
-  AppStateStatus
+  AppStateStatus,
+  Image
 } from 'react-native';
 import { connect, ConnectedProps } from 'react-redux';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
@@ -43,7 +44,6 @@ import Icon from '@assets/Icon';
 import AccessibleTouchableOpacity from '@components/common/AccessibleTouchableOpacity';
 import HeaderButton from '@components/common/HeaderButton';
 import CommonHeaderTitle from '@components/common/CommonHeaderTitle';
-import HeaderIcon from '@components/common/HeaderIcon';
 
 import { State } from '@store/types';
 import { selectTheme } from '@store/settings/selectors';
@@ -226,6 +226,13 @@ const Navigator: React.FC<Props> = ({
     </View>
   );
 
+  const OthersHeaderImage = () => (
+    <Image
+      source={isDark(theme) ? require('@assets/images/provider-logo-dark.png') : require('@assets/images/provider-logo-light.png')}
+      style={ styles.headerImage}
+    />
+  );
+
   const CommonHeaderOptions: StackNavigationOptions = {
     headerBackTestID: 'header-back',
     headerTintColor: useDarkTheme ? WHITE : PRIMARY_BLUE,
@@ -369,7 +376,7 @@ const Navigator: React.FC<Props> = ({
         component={OthersScreen}
         options={{
           ...CommonHeaderOptions,
-          headerTitle: () => <HeaderIcon />,
+          headerTitle: () => <OthersHeaderImage/>,
         }}
       />
       <OthersStack.Screen
@@ -695,6 +702,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     elevation: 8,
   },
+  headerImage: {
+    width: 180,
+    height: 40,
+    resizeMode: 'contain'
+  }
 });
 
 export default connector(Navigator);
