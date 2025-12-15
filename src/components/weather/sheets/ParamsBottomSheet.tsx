@@ -122,7 +122,7 @@ const ParamsBottomSheet: React.FC<ParamsBottomSheetProps> = ({
       key={String(param)}
       style={[styles.row, { borderBottomColor: colors.border }]}>
       <View style={styles.innerRow}>
-        {param !== RELATIVE_HUMIDITY &&
+        {param !== RELATIVE_HUMIDITY && param !== HUMIDITY &&
           param !== PRESSURE &&
           param !== UV_CUMULATED && (
             <View style={styles.iconContainer}>
