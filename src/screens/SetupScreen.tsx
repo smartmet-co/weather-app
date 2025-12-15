@@ -288,8 +288,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 40,
     left: 40,
-    height: 40,
-    width: 190,
+    height: 60,
+    width: 210,
   },
   innerContainer: {
     position: 'absolute',
