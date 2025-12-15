@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
-    minWidth: 105,
+    minWidth: 115,
     justifyContent: 'center',
   },
   row: {
