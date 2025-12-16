@@ -117,6 +117,7 @@
       "pop": "Probabilidad of precipitación (%)",
       "dewPoint": "Punto de rocío (°{{ unit }})",
       "relativeHumidity": "Humedad relativa  (%)",
+      "humidity": "Humedad relativa (%)",
       "pressure": "Presión ({{ unit }})",
       "uvCumulated": "Indice de  radiación UV",
       "dayLength": "Duración del día",

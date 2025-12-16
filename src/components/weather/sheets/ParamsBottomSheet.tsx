@@ -1,18 +1,14 @@
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import {
-  View,
-  StyleSheet,
-  Text,
-  Switch,
-  ScrollView,
-  TouchableOpacity,
-  Platform,
+  View, StyleSheet, Switch, ScrollView, TouchableOpacity, Platform,
+  useWindowDimensions
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import Text from '@components/common/AppText';
 import Icon from '@assets/Icon';
 import AccessibleTouchableOpacity from '@components/common/AccessibleTouchableOpacity';
 import CloseButton from '@components/common/CloseButton';
@@ -26,6 +22,7 @@ import {
 } from '@store/forecast/actions';
 import constants, {
   RELATIVE_HUMIDITY,
+  HUMIDITY,
   PRESSURE,
   UV_CUMULATED,
   PARAMS_TO_ICONS,
@@ -70,6 +67,7 @@ const ParamsBottomSheet: React.FC<ParamsBottomSheetProps> = ({
   onClose,
   units,
 }) => {
+  const { fontScale } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const { t } = useTranslation('forecast');
   const { colors } = useTheme() as CustomTheme;
@@ -107,6 +105,8 @@ const ParamsBottomSheet: React.FC<ParamsBottomSheetProps> = ({
     }
   };
 
+  const iconSize = Math.min(fontScale * 22, 36);
+
   const rowRenderer = (param: DisplayParameters, index: number) => (
     <View
       accessible
@@ -122,17 +122,22 @@ const ParamsBottomSheet: React.FC<ParamsBottomSheetProps> = ({
       key={String(param)}
       style={[styles.row, { borderBottomColor: colors.border }]}>
       <View style={styles.innerRow}>
-        {param !== RELATIVE_HUMIDITY &&
+        {param !== RELATIVE_HUMIDITY && param !== HUMIDITY &&
           param !== PRESSURE &&
           param !== UV_CUMULATED && (
-            <Icon
-              name={PARAMS_TO_ICONS[String(param)]}
-              style={styles.withMarginRight}
-              color={colors.hourListText}
-            />
+            <View style={styles.iconContainer}>
+              <Icon
+                name={PARAMS_TO_ICONS[String(param)]}
+                style={styles.withMarginRight}
+                color={colors.hourListText}
+                width={iconSize}
+                height={iconSize}
+              />
+            </View>
           )}
-        {param === RELATIVE_HUMIDITY && (
+        {(param === RELATIVE_HUMIDITY || param === HUMIDITY) && (
           <Text
+            maxFontSizeMultiplier={1.5}
             accessibilityLabel=""
             style={[
               styles.iconText,
@@ -144,6 +149,7 @@ const ParamsBottomSheet: React.FC<ParamsBottomSheetProps> = ({
         )}
         {param === PRESSURE && (
           <Text
+            maxFontSizeMultiplier={1.5}
             accessibilityLabel=""
             style={[
               styles.iconText,
@@ -155,6 +161,7 @@ const ParamsBottomSheet: React.FC<ParamsBottomSheetProps> = ({
         )}
         {param === UV_CUMULATED && (
           <Text
+            maxFontSizeMultiplier={1.5}
             accessibilityLabel=""
             style={[
               styles.iconText,
@@ -206,6 +213,7 @@ const ParamsBottomSheet: React.FC<ParamsBottomSheetProps> = ({
             testID="weather_params_bottom_sheet_close_button"
             onPress={onClose}
             accessibilityLabel={t('paramsBottomSheet.closeAccessibilityLabel')}
+            size={22}
           />
         </View>
         <ScrollView
@@ -280,6 +288,7 @@ const styles = StyleSheet.create({
   innerRow: {
     flexDirection: 'row',
     flex: 1,
+    maxWidth: '70%',
   },
   row: {
     flexDirection: 'row',
@@ -306,6 +315,10 @@ const styles = StyleSheet.create({
   iconText: {
     fontSize: 14,
     fontFamily: 'Roboto-Medium',
+    width: 40,
+  },
+  iconContainer: {
+    width: 50,
   },
   lastRow: {
     flex: 1,

@@ -40,6 +40,7 @@ import OnboardingScreen from '@screens/OnboardingScreen';
 
 import SearchInfoBottomSheet from '@components/search/SearchInfoBottomSheet';
 
+import Text from '@components/common/AppText';
 import Icon from '@assets/Icon';
 import AccessibleTouchableOpacity from '@components/common/AccessibleTouchableOpacity';
 import HeaderButton from '@components/common/HeaderButton';
@@ -296,7 +297,14 @@ const Navigator: React.FC<Props> = ({
     ...CommonHeaderOptions,
     path: 'search',
     headerBackTitleVisible: false,
-    headerTitle: t('navigation:search'),
+    headerTitle: () => (
+      <Text
+        style={[styles.headerTitle, { color:  useDarkTheme ? WHITE : PRIMARY_BLUE}]}
+        maxFontSizeMultiplier={1.5}
+      >
+        {t('navigation:search')}
+      </Text>
+    ),
     headerRight: () => (
       <HeaderButton
         testID="search_header_info_button"
@@ -402,7 +410,14 @@ const Navigator: React.FC<Props> = ({
         component={TermsAndConditionsScreen}
         options={{
           ...CommonHeaderOptions,
-          headerTitle: `${t('navigation:termsAndConditions')}`,
+          headerTitle: () => (
+            <Text
+              style={[styles.headerTitle, { color:  useDarkTheme ? WHITE : PRIMARY_BLUE}]}
+              maxFontSizeMultiplier={1.5}
+            >
+              {t('navigation:termsAndConditions')}
+            </Text>
+          ),
         }}
       />
       <OthersStack.Screen
@@ -452,7 +467,14 @@ const Navigator: React.FC<Props> = ({
         name="TermsAndConditions"
         options={{
           ...CommonHeaderOptions,
-          headerTitle: t('setUp:termsAndConditions'),
+          headerTitle: () => (
+            <Text
+              style={[styles.headerTitle, { color:  useDarkTheme ? WHITE : PRIMARY_BLUE}]}
+              maxFontSizeMultiplier={1.5}
+            >
+              {t('setUp:termsAndConditions')}
+            </Text>
+          )
         }}>
         {({ navigation }) => (
           <TermsAndConditionsScreen
@@ -516,6 +538,7 @@ const Navigator: React.FC<Props> = ({
               ? darkTheme.colors.tabBarInactive
               : lightTheme.colors.tabBarInactive,
             tabBarLabelStyle: styles.tabText,
+            tabBarStyle: Platform.OS === 'android' && Platform.Version < 35 ? { height: 70 } : {},
             tabBarButton: ({ style, accessibilityState, ...rest }) => {
               const activeColor = useDarkTheme
                 ? darkTheme.colors.tabBarActive
@@ -701,6 +724,10 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     shadowOpacity: 1,
     elevation: 8,
+  },
+  headerTitle: {
+    fontFamily: 'Roboto-Bold',
+    fontSize: 16,
   },
   headerImage: {
     width: 180,

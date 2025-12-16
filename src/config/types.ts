@@ -189,6 +189,7 @@ interface OnboardingWizard {
   enabled: boolean;
   languageSpecificLogo?: boolean;
   termsOfUseChanged?: boolean;
+  termsOfUseFormat?: 'jsx' | 'markdown';
 }
 
 interface Feedback {
@@ -290,6 +291,7 @@ export interface ConfigType {
     showUnitSettings?: boolean;
     clockType: 12 | 24;
     themes: Themes;
+    verboseErrorMessages?: boolean;
   };
   announcements: AnnouncementsEnabled | AnnouncementsDisabled;
   socialMediaLinks: SocialMediaLink[];
