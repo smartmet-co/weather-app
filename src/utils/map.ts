@@ -195,11 +195,11 @@ const flattenLayers = (root: RawWmsLayer): WmsLayer[] => {
   const result: WmsLayer[] = [];
 
   const visit = (layer: RawWmsLayer) => {
-    if (layer.Name && layer.Title && layer.Abstract && layer.Dimension) {
+    if (layer.Name && layer.Title && layer.Dimension) {
       result.push({
         Name: layer.Name,
         Title: layer.Title,
-        Abstract: layer.Abstract,
+        Abstract: layer.Abstract ?? '',
         CRS: normalizeToArray(layer.CRS),
         BoundingBox: normalizeToArray(layer.BoundingBox),
         Dimension: layer.Dimension,
