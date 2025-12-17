@@ -9,7 +9,8 @@ import {
   ViewStyle,
   View,
   AppState,
-  AppStateStatus
+  AppStateStatus,
+  Image
 } from 'react-native';
 import { connect, ConnectedProps } from 'react-redux';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
@@ -39,11 +40,11 @@ import OnboardingScreen from '@screens/OnboardingScreen';
 
 import SearchInfoBottomSheet from '@components/search/SearchInfoBottomSheet';
 
+import Text from '@components/common/AppText';
 import Icon from '@assets/Icon';
 import AccessibleTouchableOpacity from '@components/common/AccessibleTouchableOpacity';
 import HeaderButton from '@components/common/HeaderButton';
 import CommonHeaderTitle from '@components/common/CommonHeaderTitle';
-import HeaderIcon from '@components/common/HeaderIcon';
 
 import { State } from '@store/types';
 import { selectTheme } from '@store/settings/selectors';
@@ -226,6 +227,13 @@ const Navigator: React.FC<Props> = ({
     </View>
   );
 
+  const OthersHeaderImage = () => (
+    <Image
+      source={isDark(theme) ? require('@assets/images/provider-logo-dark.png') : require('@assets/images/provider-logo-light.png')}
+      style={ styles.headerImage}
+    />
+  );
+
   const CommonHeaderOptions: StackNavigationOptions = {
     headerBackTestID: 'header-back',
     headerTintColor: useDarkTheme ? WHITE : PRIMARY_BLUE,
@@ -289,7 +297,14 @@ const Navigator: React.FC<Props> = ({
     ...CommonHeaderOptions,
     path: 'search',
     headerBackTitleVisible: false,
-    headerTitle: t('navigation:search'),
+    headerTitle: () => (
+      <Text
+        style={[styles.headerTitle, { color:  useDarkTheme ? WHITE : PRIMARY_BLUE}]}
+        maxFontSizeMultiplier={1.5}
+      >
+        {t('navigation:search')}
+      </Text>
+    ),
     headerRight: () => (
       <HeaderButton
         testID="search_header_info_button"
@@ -369,7 +384,7 @@ const Navigator: React.FC<Props> = ({
         component={OthersScreen}
         options={{
           ...CommonHeaderOptions,
-          headerTitle: () => <HeaderIcon />,
+          headerTitle: () => <OthersHeaderImage/>,
         }}
       />
       <OthersStack.Screen
@@ -395,7 +410,14 @@ const Navigator: React.FC<Props> = ({
         component={TermsAndConditionsScreen}
         options={{
           ...CommonHeaderOptions,
-          headerTitle: `${t('navigation:termsAndConditions')}`,
+          headerTitle: () => (
+            <Text
+              style={[styles.headerTitle, { color:  useDarkTheme ? WHITE : PRIMARY_BLUE}]}
+              maxFontSizeMultiplier={1.5}
+            >
+              {t('navigation:termsAndConditions')}
+            </Text>
+          ),
         }}
       />
       <OthersStack.Screen
@@ -445,7 +467,14 @@ const Navigator: React.FC<Props> = ({
         name="TermsAndConditions"
         options={{
           ...CommonHeaderOptions,
-          headerTitle: t('setUp:termsAndConditions'),
+          headerTitle: () => (
+            <Text
+              style={[styles.headerTitle, { color:  useDarkTheme ? WHITE : PRIMARY_BLUE}]}
+              maxFontSizeMultiplier={1.5}
+            >
+              {t('setUp:termsAndConditions')}
+            </Text>
+          )
         }}>
         {({ navigation }) => (
           <TermsAndConditionsScreen
@@ -509,6 +538,7 @@ const Navigator: React.FC<Props> = ({
               ? darkTheme.colors.tabBarInactive
               : lightTheme.colors.tabBarInactive,
             tabBarLabelStyle: styles.tabText,
+            tabBarStyle: Platform.OS === 'android' && Platform.Version < 35 ? { height: 70 } : {},
             tabBarButton: ({ style, accessibilityState, ...rest }) => {
               const activeColor = useDarkTheme
                 ? darkTheme.colors.tabBarActive
@@ -695,6 +725,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     elevation: 8,
   },
+  headerTitle: {
+    fontFamily: 'Roboto-Bold',
+    fontSize: 16,
+  },
+  headerImage: {
+    width: 180,
+    height: 40,
+    resizeMode: 'contain'
+  }
 });
 
 export default connector(Navigator);
