@@ -42,7 +42,6 @@ const WarningTypeFiltersList = ({
             <View
               style={[
                 styles.filterButton,
-
                 {
                   backgroundColor: capViewSettings?.severityBackgroundInSymbol ? colorMap[info.severity] : colors.background,
                   borderColor: colors.background,
