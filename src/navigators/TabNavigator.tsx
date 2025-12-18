@@ -392,7 +392,14 @@ const Navigator: React.FC<Props> = ({
         component={AboutScreen}
         options={{
           ...CommonHeaderOptions,
-          headerTitle: `${t('navigation:about')}`,
+          headerTitle: () => (
+            <Text
+              style={[styles.headerTitle, { color:  useDarkTheme ? WHITE : PRIMARY_BLUE}]}
+              maxFontSizeMultiplier={1.5}
+            >
+              {t('navigation:about')}
+            </Text>
+          )
         }}
         listeners={stackScreenListener}
       />
@@ -401,7 +408,14 @@ const Navigator: React.FC<Props> = ({
         component={SettingsScreen}
         options={{
           ...CommonHeaderOptions,
-          headerTitle: `${t('navigation:settings')}`,
+          headerTitle: () => (
+            <Text
+              style={[styles.headerTitle, { color:  useDarkTheme ? WHITE : PRIMARY_BLUE}]}
+              maxFontSizeMultiplier={1.5}
+            >
+              {t('navigation:settings')}
+            </Text>
+          )
         }}
         listeners={stackScreenListener}
       />
@@ -425,7 +439,14 @@ const Navigator: React.FC<Props> = ({
         component={AccessibilityScreen}
         options={{
           ...CommonHeaderOptions,
-          headerTitle: `${t('navigation:accessibility')}`,
+          headerTitle: () => (
+            <Text
+              style={[styles.headerTitle, { color:  useDarkTheme ? WHITE : PRIMARY_BLUE}]}
+              maxFontSizeMultiplier={1.5}
+            >
+              {t('navigation:accessibility')}
+            </Text>
+          )
         }}
       />
       <OthersStack.Screen
@@ -433,7 +454,14 @@ const Navigator: React.FC<Props> = ({
         component={FeedbackScreen}
         options={{
           ...CommonHeaderOptions,
-          headerTitle: `${t('navigation:feedback')}`,
+          headerTitle: () => (
+            <Text
+              style={[styles.headerTitle, { color:  useDarkTheme ? WHITE : PRIMARY_BLUE}]}
+              maxFontSizeMultiplier={1.5}
+            >
+              {t('navigation:feedback')}
+            </Text>
+          )
         }}
       />
     </OthersStack.Navigator>
