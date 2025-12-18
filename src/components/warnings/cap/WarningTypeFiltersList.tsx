@@ -6,6 +6,7 @@ import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import WarningSymbol from '../WarningsSymbol';
 import { Config } from '@config';
+import { severityList } from '@store/warnings/constants';
 
 const WarningTypeFiltersList = ({
   warnings,
@@ -25,29 +26,29 @@ const WarningTypeFiltersList = ({
     Extreme: 'red',
   };
 
+  const severities = [...severityList].reverse();
   return (
     <ScrollView
       style={styles.row}
       horizontal
       showsHorizontalScrollIndicator={false}>
-      {warnings?.slice(0).map((warning) => {
+      { severities.map(severity => warnings?.slice(0).map((warning) => {
         const info = Array.isArray(warning.info) ? warning.info[0] : warning.info;
 
-        return (
+        return severity === info.severity ? (
           <AccessibleTouchableOpacity
             key={`${info.event}-${info.severity}`}
             onPress={() => onWarningTypePress(warning)}>
             <View
               style={[
                 styles.filterButton,
-
                 {
                   backgroundColor: capViewSettings?.severityBackgroundInSymbol ? colorMap[info.severity] : colors.background,
                   borderColor: colors.background,
                 },
                 !activeWarnings.find(
-                  ({ severity, event }) =>
-                    info.severity === severity &&
+                  ({ severity: activeSeverity, event }) =>
+                    info.severity === activeSeverity &&
                     info.event === event
                 ) && styles.activeFilter,
               ]}>
@@ -56,8 +57,8 @@ const WarningTypeFiltersList = ({
               />
             </View>
           </AccessibleTouchableOpacity>
-        )
-      })}
+        ) : null
+      }))}
     </ScrollView>
   );
 };
