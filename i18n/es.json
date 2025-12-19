@@ -550,7 +550,7 @@
     "panelTitle": "Advertencias en áreas continentales",
     "panelTitleSlim": "Alerta",
     "panelTitleCap": "Alerta",
-    "warningsForNDays": "Alertas {{ days }} days",
+    "warningsForNDays": "Alertas {{ days }} dias",
     "capUpdated": "Actualizado",
     "lastUpdated": "Últuma actualización",
     "allWarnings": "Alertas en toda Colombia",
