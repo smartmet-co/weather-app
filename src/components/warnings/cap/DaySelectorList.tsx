@@ -1,9 +1,10 @@
 import React from 'react';
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import { CustomTheme, GRAYISH_BLUE } from '@assets/colors';
+import { CustomTheme, TERTIARY_LIGHT, TERTIARY_DARK } from '@assets/colors';
 import AccessibleTouchableOpacity from '@components/common/AccessibleTouchableOpacity';
 import CapSeverityBar from './CapSeverityBar';
+import { Config } from '@config';
 
 const DaySelector = ({
   active,
@@ -11,6 +12,7 @@ const DaySelector = ({
   index,
   severities,
   weekday,
+  relativeDay,
   date,
   last,
 }: {
@@ -19,10 +21,14 @@ const DaySelector = ({
   index: number;
   severities?: number[];
   weekday: string;
+  relativeDay: string;
   date: string;
   last?: boolean;
 }) => {
-  const { colors } = useTheme() as CustomTheme;
+  const { colors, dark } = useTheme() as CustomTheme;
+  const { capViewSettings } = Config.get('warnings');
+  const width = capViewSettings?.useRelativeDays ? 110 : 70;
+
   return (
     <AccessibleTouchableOpacity
       onPress={() => onSelect(index)}
@@ -33,11 +39,12 @@ const DaySelector = ({
           index === 0 && styles.roundedLeftCorners,
           last && styles.roundedRightCorners,
           {
-            borderTopColor: active ? colors.tabBarActive : colors.background,
-            borderRightColor: GRAYISH_BLUE,
+            borderTopColor: active ? colors.tabBarActive : colors.cardHeader,
+            borderRightColor: dark ? TERTIARY_DARK : TERTIARY_LIGHT,
             backgroundColor: active
               ? colors.screenBackground
-              : colors.background,
+              : colors.cardHeader,
+            width,
           },
         ]}>
         <Text
@@ -46,7 +53,7 @@ const DaySelector = ({
             styles.capitalized,
             { color: colors.primaryText },
           ]}>
-          {weekday}
+          {capViewSettings?.useRelativeDays ? relativeDay : weekday}
         </Text>
         <Text style={[styles.text, { color: colors.primaryText }]}>{date}</Text>
         <View style={styles.severityBarContainer}>
@@ -64,7 +71,7 @@ const DaySelectorList = ({
   onDayChange,
 }: {
   activeDay: number;
-  dates: { weekday: string; date: string; time: number }[];
+  dates: { weekday: string; date: string; time: number, relativeDay: string }[];
   dailySeverities: number[][];
   onDayChange: (arg0: number) => void;
 }) => (
@@ -73,11 +80,12 @@ const DaySelectorList = ({
     horizontal
     showsHorizontalScrollIndicator={false}>
     <View style={styles.row}>
-      {dates.map(({ time, weekday, date }, index) => (
+      {dates.map(({ time, weekday, date, relativeDay }, index) => (
         <DaySelector
           active={activeDay === index}
           key={time}
           weekday={weekday}
+          relativeDay={relativeDay}
           date={date}
           onSelect={() => onDayChange(index)}
           severities={dailySeverities[index]}

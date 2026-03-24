@@ -39,13 +39,15 @@ import { setCurrentLocation as setCurrentLocationAction } from '@store/location/
 import { fetchAnnouncements as fetchAnnouncementsAction } from '@store/announcements/actions';
 import { getGeolocation } from '@utils/helpers';
 import {
-  PRIMARY_BLUE,
   WHITE,
-  HEADER_DARK,
   GRAY_1,
   TRANSPARENT,
   SHADOW_DARK,
   SHADOW_LIGHT,
+  QUATERNARY_DARK,
+  QUATERNARY_LIGHT,
+  PRIMARY_LIGHT,
+  PRIMARY_DARK,
 } from '@assets/colors';
 import {
   selectInitialTab,
@@ -203,7 +205,7 @@ const Navigator: React.FC<Props> = ({
   const CommonHeaderOptions: StackNavigationOptions = useMemo(
     () => ({
       headerBackTestID: 'header-back',
-      headerTintColor: useDarkTheme ? WHITE : PRIMARY_BLUE,
+      headerTintColor: useDarkTheme ? PRIMARY_DARK : PRIMARY_LIGHT,
       headerTitleStyle: {
         fontFamily: 'Roboto-Bold',
       },
@@ -211,6 +213,7 @@ const Navigator: React.FC<Props> = ({
         ...styles.header,
         shadowColor:
           useDarkTheme || Platform.OS === 'android' ? SHADOW_DARK : SHADOW_LIGHT,
+        backgroundColor: useDarkTheme ? QUATERNARY_DARK : QUATERNARY_LIGHT,
       },
       headerTitleAlign: 'center',
       headerBackImage: HeaderBackImage,
@@ -345,7 +348,7 @@ const Navigator: React.FC<Props> = ({
   return (
     <>
       <StatusBar
-        backgroundColor={useDarkTheme ? HEADER_DARK : WHITE}
+        backgroundColor={useDarkTheme ? QUATERNARY_DARK : WHITE}
         barStyle={useDarkTheme ? 'light-content' : 'dark-content'}
       />
       <NavigationContainer
@@ -366,7 +369,16 @@ const Navigator: React.FC<Props> = ({
               ? darkTheme.colors.tabBarInactive
               : lightTheme.colors.tabBarInactive,
             tabBarLabelStyle: styles.tabText,
-            tabBarStyle: Platform.OS === 'android' && Platform.Version < 35 ? { height: 70 } : {},
+            tabBarStyle: [
+              {
+                backgroundColor: useDarkTheme
+                  ? QUATERNARY_DARK
+                  : QUATERNARY_LIGHT,
+              },
+              Platform.OS === 'android' && Platform.Version < 35
+                ? { height: 70 }
+                : {},
+            ],
             // eslint-disable-next-line react/no-unstable-nested-components
             tabBarButton: ({ style, accessibilityState, ...rest }) => {
               const activeColor = useDarkTheme
