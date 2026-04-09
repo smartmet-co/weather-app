@@ -290,9 +290,7 @@
   },
   "about": {
     "versionInfo": "Versión de la aplicación",
-    "followUs": "Siganos en",
-    "title": "App del  Instituto de Hidrología, Meteorología y Estudios Ambientales (IDEAM)",
-    "body": "Nuestra aplicación del tiempo proporciona información meteorológica para casi todos los municipios de Colombia. Si habilitas la ubicación en tu teléfono, el servicio mostrará automáticamente el pronóstico de tu ubicación durante hasta 10 días. ¿Solo te interesa la temperatura o también deseas información sobre la presión, ráfagas de viento o el índice UV? Tanto los pronósticos del tiempo como las observaciones meteorológicas te permiten elegir qué datos deseas ver. También puedes guardar tus ubicaciones favoritas en Colombia y en el extranjero en la aplicación y consultarlas fácilmente. La información está disponible en tablas y gráficos. Las animaciones en la sección del mapa permiten seguir, por ejemplo, el movimiento de las áreas de lluvia, y el pronóstico de lluvia basado en imágenes de radar que muestran la dirección en la que se desplazaran las lluvias en las próximas horas. El servicio muestra las advertencias meteorológicas actuales en tu ubicación seleccionada y también puedes consultar fácilmente las advertencias meteorológicas oficiales en todo Colombia."
+    "followUs": "Siganos en"
   },
   "settings": {
     "language": "Idioma",
