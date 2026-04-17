@@ -5,8 +5,8 @@ import { CustomTheme, SECONDARY_BLUE } from '@assets/colors';
 import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import WarningSymbol from '@assets/WarningsSymbol';
-import { Config } from '@config';
 import { severityList } from '@store/warnings/constants';
+import { Config } from '@config';
 
 const WarningTypeFiltersList = ({
   warnings,

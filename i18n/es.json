@@ -290,9 +290,7 @@
   },
   "about": {
     "versionInfo": "Versión de la aplicación",
-    "followUs": "Siganos en",
-    "title": "App del  Instituto de Hidrología, Meteorología y Estudios Ambientales (IDEAM)",
-    "body": "Nuestra aplicación del tiempo proporciona información meteorológica para casi todos los municipios de Colombia. Si habilitas la ubicación en tu teléfono, el servicio mostrará automáticamente el pronóstico de tu ubicación durante hasta 10 días. ¿Solo te interesa la temperatura o también deseas información sobre la presión, ráfagas de viento o el índice UV? Tanto los pronósticos del tiempo como las observaciones meteorológicas te permiten elegir qué datos deseas ver. También puedes guardar tus ubicaciones favoritas en Colombia y en el extranjero en la aplicación y consultarlas fácilmente. La información está disponible en tablas y gráficos. Las animaciones en la sección del mapa permiten seguir, por ejemplo, el movimiento de las áreas de lluvia, y el pronóstico de lluvia basado en imágenes de radar que muestran la dirección en la que se desplazaran las lluvias en las próximas horas. El servicio muestra las advertencias meteorológicas actuales en tu ubicación seleccionada y también puedes consultar fácilmente las advertencias meteorológicas oficiales en todo Colombia."
+    "followUs": "Siganos en"
   },
   "settings": {
     "language": "Idioma",
@@ -551,9 +549,9 @@
     "177": "$t(symbols:77)"
   },
   "warnings": {
-    "panelTitle": "Advertencias en áreas continentales",
+    "panelTitle": "Alerta",
     "panelTitleSlim": "Alerta",
-    "panelTitleCap": "Alerta",
+    "panelTitleCap": "Alertas en Colombia",
     "warningsForNDays": "Alertas {{ days }} días",
     "capUpdated": "Actualizado",
     "lastUpdated": "Últuma actualización",
@@ -582,10 +580,10 @@
       "High tide": "Pleamar"
     },
     "severities": {
-      "0": "Condiciones normales",
-      "1": "Potencialmente peligroso",
-      "2": "Peligroso",
-      "3": "Muy peligroso"
+      "0": "Condición Normal",
+      "1": "Alerta Amarilla (Informarse)",
+      "2": "Alerta Naranja (Prepararse)",
+      "3": "Alerta Roja (Tomar Acción)"
     },
     "info": {
       "dailyTitle": "Leyendas diarias",
@@ -663,33 +661,7 @@
     "checkConnection": "Por favor, verificar su conexión e intentar nuevamente.",
     "tryAgain": "Intentar nuevamente"
   },
-  "accessibility": {
-    "generalTitle": "Accesibilidad a la aplicación meteorológica del Instituto de Hidrología, Meteorología y Estudios Ambientales (IDEAM) ",
-    "generalAbout": "Esta declaración de accesibilidad explica cómo la aplicación del Instituto de Hidrología, Meteorología y Estudios Ambientales (IDEAM) cumple con la Ley de Provisión de Servicios Digitales, qué deficiencias existen en la accesibilidad de la aplicación y cómo puedes enviarnos tus comentarios sobre problemas de accesibilidad.",
-    "generalDescription": "Esta aplicación es responsabilidad del Instituto de Hidrología, Meteorología y Estudios Ambientales (IDEAM). Queremos que la mayor cantidad posible de usuarios pueda acceder a nuestros servicios digitales. Tenemo en cuenta la accesibilidad en el desarrollo de los servicios digitales.",
-    "subTitle1": "¿Qué tan accesible es la aplicación?",
-    "description1": "Esta aplicación cumple parcialmente con los criterios de accesibilidad requeridos por la ley en los niveles A y AA (WCAG 2.1). La aplicación presenta algunas deficiencias en accesibilidad, las cuales se describen con más detalle a continuación.",
-    "subTitle2": "¿Ha notado deficiencias en la accesibilidad?",
-    "description2": "Estamos trabajando constantemente para mejorar la accesibilidad de la aplicación. Si descubre algún problema que no esté descrito en esta página, por favor háganoslo saber y haremos todo lo posible por solucionarlo. Respondremos lo antes posible o dentro de un máximo de dos semanas. Pueds contactarnos por correo electrónico a:",
-    "email": "kirjaamo@fmi.fi",
-    "subTitle3": "Accessibility enforcement",
-    "description3": "La Agencia Regional Administrativa del Estado de Colombia tiene implementado  oficina de quejas relacionada con  los requisitos de accesibilidad. Si no estás satisfecho con la respuesta que recibe, o si no recibe respuesta dentro de dos semanas, puedes enviar tus comentarios a la Agencia Regional Administrativa del Estado. El sitio web de la Agencia Regional Administrativa del Estado tiene detalles sobre cómo presentar una queja y cómo se procesará el asunto.",
-    "website": "www.saavutettavuusvaatimukset.fi",
-    "email2": "saavutettavuus@avi.fi",
-    "aviContact": "\nRegional State Administrative Agency for Southern Finland, Accessibility Enforcement Unit\n\nTelephone number for switchboard +385 295 016 000",
-    "subTitle4": "Detalles sobre la accesibilidad técnica",
-    "description4": "La aplicación aún no es completamente accesible.",
-    "subTitle5": "El Contenido o las funciones aún no son accesibles",
-    "description5": "La aplicación contiene elementos que no tienen un encabezado o etiqueta descriptiva. (WCAG 2.4.6)  Algunos símbolos meteorológicos y barras de lluvia en la aplicación no tienen suficiente contraste con el fondo o con elementos adyacentes. (WCAG 1.4.3)  Algunos de los símbolos de la aplicación (por ejemplo, las barras de lluvia por día) no tienen un equivalente en texto. (WCAG 1.1.1) La aplicación tiene elementos que están agrupados, pero que pueden recibir el foco de manera separada. (WCAG 2.4.3) La aplicación presenta una sección incrustada de un servicio en línea cuyo idioma no coincide con el idioma seleccionado de la aplicación en todos los casos. (WCAG 3.1.1 y 3.1.2) La aplicación contiene secciones que están en diferentes idiomas y, en algunos casos, se leen en un idioma distinto al de la aplicación. (WCAG 3.1.2)",
-    "description5.1": "El objetivo es rectificar las deficiencias mencionadas aquí durante 2024-2025, si es posible, sin realizar cambios significativos en la apariencia o funcionalidad de la aplicación.",
-    "subTitle6": "Accesibilidad del contenido basado en el mapa",
-    "description6": "La aplicación proporciona información meteorológica basada en mapas. Según la legislación, los mapas y servicios de mapas no tienen que cumplir con los requisitos de accesibilidad. Los datos visualizados en los mapas están disponibles en otro formato accesible dentro de la aplicación.",
-    "subTitle7": "¿Cómo hemos probado la accesibilidad?",
-    "description7": "Las observaciones en esta declaración de accesibilidad se basan en una evaluación de un tercero sobre si el servicio en línea cumple con los requisitos legales. La aplicación fue publicada el 10 de mayo de 2022. Esta declaración fue preparada el 21 de abril de 2022. La declaración fue actualizada por última vez el 8 de abril de 2024.",
-    "link1": "Ley sobre la provisión de servicios digitales (306/2019)",
-    "link2": " Requisitos de accesibilidad del sitio web",
-    "openInBrowser": "Abrír en el navegador"
-  },
+  "accessibility": {},
   "announcements": {
     "crisisPrefix": "Alertas:",
     "maintenancePrefix": "Atención:",
