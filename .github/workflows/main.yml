@@ -22,7 +22,7 @@ on:
         - Android and iOS
       increment:
         type: choice
-        description: Increment Build and Version number
+        description: Increment Build number
         options:
         - 'true'
         - 'false'

@@ -321,9 +321,7 @@
   },
   "about": {
     "versionInfo": "Application version",
-    "followUs": "Follow us",
-    "title": "The Weather app by the Finnish Meteorological Institute",
-    "body": "Our Weather app provides weather information for almost all Finnish municipalities. If you enable location on your device, the service will automatically show your location's forecast for up to 10 days. Are you only interested in temperature or do you also want information about pressure, wind gusts or the UV index? Both weather forecasts and weather observations allow you to choose which weather data you want to see. You can also save your favorite locations in Finland and abroad on the app and browse them easily. The information is available as tables and graphs. The animations in the map section allow you to follow, for example, the movement of rainfall areas, and the rain forecast based on radar images shows the direction in which rainfall areas will move in the coming hours. The service displays current weather warnings at your chosen location and you can also easily check official weather warnings throughout Finland."
+    "followUs": "Follow us"
   },
   "settings": {
     "language": "Language",
@@ -611,28 +609,24 @@
     "dayAfterTomorrow": "In 2 days",
     "highestSeverity": "highest severity",
     "types": {
-      "thunderstorm": "Severe thunderstorm",
-      "wind": "Wind warning for land areas",
-      "rain": "Rain warning",
-      "trafficWeather": "Traffic weather",
-      "pedestrianSafety": "Pedestrian weather",
-      "forestFireWeather": "Wildfire warning",
-      "hotWeather": "Heat wave warning",
-      "coldWeather": "Freezing temperature warning",
-      "uvNote": "UV bulletin",
-      "flooding": "Flood warning",
-      "seaWind": "Wind warning for sea areas",
-      "seaThunderStorm": "Thunderstorm wind gusts for sea areas",
-      "seaWaveHeight": "Wave height warning",
-      "seaWaterHeightHighWater": "Warning for high sea level",
-      "seaWaterHeightShallowWater": "Warning for low sea level",
-      "seaIcing": "Ice accretion warning"
+      "Landslide": "Landslide",
+      "Forest fire": "Forest fire",
+      "Low temperature": "Low temperature",
+      "High temperature": "High temperature",
+      "Rainfall": "Rainfall",
+      "Disturbance": "Disturbance",
+      "Tropical depression": "Tropical depression",
+      "Tropical storm": "Tropical storm",
+      "Hurricane": "Hurricane",
+      "Post-tropical cyclone": "Post-tropical cyclone",
+      "Wind and waves": "Wind and waves",
+      "High tide": "High tide"
     },
     "severities": {
-      "0": "No danger",
-      "1": "Potentially dangerous",
-      "2": "Dangerous",
-      "3": "Very dangerous"
+      "0": "Normal Conditions",
+      "1": "Yellow warning(Get informed)",
+      "2": "Orange warning (Be prepared)",
+      "3": "Red warning (Take actions)"
     },
     "info": {
       "dailyTitle": "Daily legends",
@@ -712,33 +706,7 @@
     "checkConnection": "Please check your connection and try again.",
     "tryAgain": "Try again"
   },
-  "accessibility": {
-    "generalTitle": "Accessibility of the Finnish Meteorological Institute's Weather application",
-    "generalAbout": "This accessibility statement explains how the Finnish Meteorological Institute’s application complies with the Act on the Provision of Digital Services, what shortcomings there are in the accessibility of the application and how you can give us feedback on accessibility issues.",
-    "generalDescription": "This application is the responsibility of the Finnish Meteorological Institute. We want as many users as possible to be able to access our digital services. We take accessibility into account in the development of digital services.",
-    "subTitle1": "How accessible is the application?",
-    "description1": "This application partly meets the accessibility criteria required by law at level A and AA (WCAG 2.1). The application has some shortcomings in accessibility, which are described in more detail below.",
-    "subTitle2": "Did you notice shortcomings in accessibility?",
-    "description2": "We are constantly working to improve the accessibility of the application. If you discover any issues that are not described on this page, please let us know and we will do our best to remedy them. We will respond as soon as possible or within two weeks at the latest. You can contact us by email at:",
-    "email": "accessibility@fmi.fi",
-    "subTitle3": "Accessibility monitoring",
-    "description3": "Finnish Transport and Communications Agency Traficom monitors the implementation of accessibility requirements. If you are not satisfied with the response you have received or you do not receive a response at all within two weeks, you can give feedback to Traficom. The website provides detailed information on how to file a complaint and how the matter will be processed.",
-    "website": "www.webaccessibility.fi",
-    "email2": "saavutettavuus@traficom.fi",
-    "trafiContact": "\nDigital Accessibility Supervision Unit\n\ntelephone switchboard 029 534 5000",
-    "subTitle4": "Details on technical accessibility",
-    "description4": "The application is not yet fully accessible.",
-    "subTitle5": "Content or functions that are not yet accessible",
-    "description5": "- The application contains elements that do not have a descriptive heading or label. (WCAG 2.4.6)\n- Some weather symbols and rainfall bars in the application do not have sufficient contrast to the background or adjacent elements. (WCAG 1.4.3)\n- Some of the application symbols (e.g. rainfall bars per day) do not have a text equivalent. (WCAG 1.1.1).\n- The application has elements that are grouped together but may become in focus separately. (WCAG 2.4.3)\n- The application features an embedded section of an online service whose language does not match the selected language of the application in all cases. (WCAG 3.1.1 and 3.1.2)\n- The application contains sections that are in different languages and are in some cases read not in the language of the application. (WCAG 3.1.2)",
-    "description5.1": "The aim is to rectify the shortcomings listed here during 2024-2025 if possible without significant changes to app outlook or functionality.",
-    "subTitle6": "Accessibility of map-based content",
-    "description6": "The application provides map-based weather information. Under legislation, maps and map services do not have to meet accessibility requirements. The data visualised on maps is available elsewhere in the application in an accessible format.",
-    "subTitle7": "How have we tested accessibility?",
-    "description7": "The observations in this accessibility statement are based on a third-party assessment of whether the online service meets the legal requirements. The application was published on 10th May 2022. This statement was prepared on 21th April 2022. The statement was last updated on 8th April 2024.",
-    "link1": "Act on the Provision of Digital Services (306/2019)",
-    "link2": "Website on accessibility requirements",
-    "openInBrowser": "Open in browser"
-  },
+  "accessibility": {},
   "announcements": {
     "crisisPrefix": "Warning:",
     "maintenancePrefix": "Attention:",
