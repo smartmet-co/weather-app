@@ -549,9 +549,9 @@
     "177": "$t(symbols:77)"
   },
   "warnings": {
-    "panelTitle": "Advertencias en áreas continentales",
+    "panelTitle": "Alerta",
     "panelTitleSlim": "Alerta",
-    "panelTitleCap": "Alerta",
+    "panelTitleCap": "Alertas en Colombia",
     "warningsForNDays": "Alertas {{ days }} días",
     "capUpdated": "Actualizado",
     "lastUpdated": "Últuma actualización",
