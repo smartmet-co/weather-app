@@ -6,13 +6,13 @@
       "forecastAccessibilityHint": "Los mismos datos están disponibles como una tabla de datos accesibles ",
       "observationAccessibilityHint": " Los mismos datos están disponibles como lista de datos accesibles ",
       "cloud": "base de la nube",
-      "cloudAccessibilityLabel": "Abrír la gráfica de base de nube",
+      "cloudAccessibilityLabel": "Abrir la gráfica de base de nube",
       "dewPoint": "Punto de rocío",
       "humidity": "Humedad",
       "relativeHumidity": "Humedad relativa",
-      "humidityAccessibilityLabel": "Abrír la gráfica de humedad",
+      "humidityAccessibilityLabel": "Abrir la gráfica de humedad",
       "visCloud": "Visibilidad y cobertura total de nubes",
-      "visCloudAccessibilityLabel": "Abrír las gráficas de visibilidad y nubes",
+      "visCloudAccessibilityLabel": "Abrir las gráficas de visibilidad y nubes",
       "visibility": "Visibilidad",
       "totalCloudCover": "Cobertura total de nubes",
       "cloudCover01": "Despejado",
@@ -21,17 +21,17 @@
       "cloudCover57": "Semi nublado",
       "cloudCover78": "Nublado",
       "pressure": "Presión",
-      "pressureAccessibilityLabel": "Abrír la gráfica de presión",
+      "pressureAccessibilityLabel": "Abrir la gráfica de presión",
       "temperature": "Temperatura",
-      "temperatureAccessibilityLabel": "Abrír la gráfica de temperatura",
+      "temperatureAccessibilityLabel": "Abrir la gráfica de temperatura",
       "precipitation": "Precipitación",
-      "precipitationAccessibilityLabel": " Abrír la gráfica de Precipitación",
-      "precipitationLight": "Precipitación ({{ unit }}), Lluvia ligera",
-      "precipitationModerate": "Precipitación ({{ unit }}), Lluvia moderada",
-      "precipitationHeavy": "Precipitación ({{ unit }}), Lluvia fuerte",
-      "pop": "Probabilidad de Precipitación (%)",
+      "precipitationAccessibilityLabel": " Abrir la gráfica de Precipitación",
+      "precipitationLight": "Precipitación ({{ unit }}), lluvia ligera",
+      "precipitationModerate": "Precipitación ({{ unit }}), e moderada",
+      "precipitationHeavy": "Precipitación ({{ unit }}), lluvia fuerte",
+      "pop": "Probabilidad de precipitación (%)",
       "wind": "Viento",
-      "windAccessibilityLabel": "Abrír la gráfica de  viento",
+      "windAccessibilityLabel": "Abrir la gráfica de  viento",
       "feelsLike": "Sensación térmica",
       "windSpeed": "Velocidad del viento",
       "windGust": "Racha de viento",
@@ -41,9 +41,9 @@
       "next24h": "Próximas 24 horas",
       "next24hAccessibilityLabel": "Mostrar las próximas 24 horas",
       "snowDepth": "Espesor de nieve",
-      "uvIndex": "Ìndice de radiación ultravioleta",
-      "uv": "Ìndice de radiación UV",
-      "uvAccessibilityLabel": "Abrír la gráfica del índice de radiación UV",
+      "uvIndex": "Índice de radiación ultravioleta",
+      "uv": "Índice de radiación UV",
+      "uvAccessibilityLabel": "Abrir la gráfica del índice de radiación UV",
       "zeroLine": "Punto cero",
       "weather": "Tiempo",
       "daily": "Valores diarios",
@@ -82,13 +82,13 @@
     "fromTo": "From {{ min }} {{ unit }} to {{ max }} {{ unit }}",
     "hourListOpenAccessibilityLabel": "Hora inicial del pronóstico del día",
     "hourListCloseAccessibilityLabel": "Hora final del pronóstico del día",
-    "at": "en",
+    "at": "a las",
     "table": "Tabla",
-    "tableAccessibilityHint": "Cambiar a la visualizacion del pronónostico en tablas",
+    "tableAccessibilityHint": "Cambiar a la visualización del pronóstico en tablas",
     "chart": "Gráfica",
-    "chartAccessibilityHint": "Cambiar a la visualizacion del pronóstico en gráficas",
+    "chartAccessibilityHint": "Cambiar a la visualización del pronóstico en gráficas",
     "paramsAccessibilityLabel": "Parámetro ",
-    "paramsAccessibilityHint": "Abrír la selección de parámetros",
+    "paramsAccessibilityHint": "Abrir la selección de parámetros",
     "active": "seleccionado",
     "notActive": "no seleccionado",
     "params": {
@@ -107,26 +107,26 @@
       "title": " Vista por horas",
       "subTitle": "Seleccionar el parámetro a representar por horas",
       "restoreButtonText": "Volver a la configuración inicial",
-      "restoreAccessibilityLabel": "Volver a la configuración inicial de seleccion del parámtero",
+      "restoreAccessibilityLabel": "Volver a la configuración inicial de selección del parámetro",
       "smartSymbol": "Símbolo del tiempo",
       "temperature": "Temperatura(°{{ unit }})",
       "feelsLike": "Sensación térmica (°{{ unit }})",
-      "windSpeedMSwindDirection": "Velocidad del viento ({{ unit }}) y direccción",
+      "windSpeedMSwindDirection": "Velocidad del viento ({{ unit }}) y dirección",
       "hourlymaximumgust": "Racha de viento ({{ unit }})",
       "precipitation1h": "Precipitación ({{ unit }})",
-      "pop": "Probabilidad of precipitación (%)",
+      "pop": "Probabilidad de precipitación (%)",
       "dewPoint": "Punto de rocío (°{{ unit }})",
       "relativeHumidity": "Humedad relativa  (%)",
       "humidity": "Humedad relativa (%)",
       "pressure": "Presión ({{ unit }})",
-      "uvCumulated": "Indice de  radiación UV",
+      "uvCumulated": "Índice de  radiación UV",
       "dayLength": "Duración del día",
-      "selectAccessibilityHint": "Doble tap para seleccionar el parámetro",
-      "unSelectAccessibilityHint": "Doble tap para desceleccionar el parámetro",
+      "selectAccessibilityHint": "Doble clic para seleccionar el parámetro",
+      "unSelectAccessibilityHint": "Doble clic para desseleccionar el parámetro",
       "restoreDefaultHint": "Volver a la configuración inicial"
     },
     "infoAccessibilityLabel": "Info",
-    "infoAccessibilityHint": "Abrír la información del tiempo",
+    "infoAccessibilityHint": "Abrir la información del tiempo",
     "weatherInfoBottomSheet": {
       "closeAccessibilityLabel": "Cerrar la información del tiempo",
       "dayForecastInfoTitle": "Información del pronóstico diario",
@@ -142,8 +142,8 @@
       "hourlyForecastInfoTitle": "Información del pronóstico por horas",
       "hourlyForecastedTemperature": "Temperatura(°{{ unit }})",
       "feelsLikeTemperature": "Sensación térmica temperatura(°{{ unit }})",
-      "feelsLikeColder": "Piel temperaturaSesanción térmica ≥ -5°C below the Pronóstico temperatura(°{{ unit }})",
-      "feelsLikeWarmer": "Piel temperaturaSensación térmica ≥ 2°C above the Pronóstico temperatura(°{{ unit }})",
+      "feelsLikeColder": "Piel temperatura Sesanción térmica ≥ -5°C below the Pronóstico temperatura(°{{ unit }})",
+      "feelsLikeWarmer": "Piel temperatura Sensación térmica ≥ 2°C above the Pronóstico temperatura(°{{ unit }})",
       "windSpeedAndDirection": " Dirección y velocidad del  viento ({{ unit }})",
       "windDirectionArrow": "Flecha de dirección de viento",
       "hurricane": "Huracán",
@@ -160,7 +160,7 @@
       "dewPoint": " Temperatura de punto de rocío (°{{ unit }})",
       "relativeHumidity": "Humedad relativa (%)",
       "pressure": "Presión ({{ unit }})",
-      "uvIndex": "Indice de radiación ultravioleta",
+      "uvIndex": "Índice de radiación ultravioleta",
       "uvLight": "bajo",
       "uvModerate": "moderado - umbral para el uso de bloqueador solar",
       "strong": "alto",
@@ -179,13 +179,13 @@
       "showRest": "Mostrar los otros símbolos meteorológicos",
       "showLess": "Mostrar menos",
       "timezone": "Huso horario",
-      "timezoneDescription": "Todos los horarios en la aplicación se visualizan de acuerdo con la huso horario elegido"
+      "timezoneDescription": "Todos los horarios en la aplicación se visualizan de acuerdo con el huso horario elegido"
     }
   },
   "observation": {
     "observationStation": "Estación meteorológica",
     "stationAccessibilityHint": "Cambiar la estación meteorológica ",
-    "selectStationAccessibilityHint": "Doble tap para seleccionar la estación meteorológica",
+    "selectStationAccessibilityHint": "Doble clic para seleccionar la estación meteorológica",
     "latestObservation": "Última medida Última observación meteorológica",
     "distance": "Distancia",
     "distanceFromStation": " en km desde la estación de pronóstico",
@@ -195,8 +195,8 @@
     "chart": "Gráfica",
     "time": "Hora",
     "at": "a las",
-    "tooOld": "Las observaciones existen,  pero no estan actualizas.",
-    "onlyDailyValues": "En esta estación meteorológica soy hay medidas diarias.",
+    "tooOld": "Las observaciones existen, pero no están actualizadas.",
+    "onlyDailyValues": "En esta estación meteorológica solo hay medidas diarias.",
     "measurements": {
       "temperature": "Temperatura",
       "dewPoint": "Punto de rocío",
@@ -269,7 +269,7 @@
     "general": "General",
     "dataPrivacy": "Privacidad y protección de datos",
     "accessibility": "Accesibilidad",
-    "termsAndConditions": "Términos y condiciónes",
+    "termsAndConditions": "Términos y condiciones",
     "feedback": "Servicio al cliente",
     "warnings": "Alerta",
     "settings": "Configuración",
@@ -280,8 +280,8 @@
     "currentLocation": "Utilizar ubicación actual",
     "backAccessibilityLabel": "Volver atrás",
     "locateAccessibilityLabel": "Utilizar su ubicación actual",
-    "searchAccessibilityLabel": "Abrír la pantalla de búsqueda",
-    "searchInfoAccessibilityHint": "Abrír la información de la pantalla de búsqueda",
+    "searchAccessibilityLabel": "Abrir la pantalla de búsqueda",
+    "searchInfoAccessibilityHint": "Abrir la información de la pantalla de búsqueda",
     "timezone": "Huso horario",
     "slash": "de",
     "locatedTo": "Ubicado en:",
@@ -305,7 +305,7 @@
     "appearanceAutomatic": "Automático",
     "allowLocation": "Autorizar localización",
     "locationNever": "Nunca",
-    "locationWhenInUse": "cuando se este utilizando la aplicación",
+    "locationWhenInUse": "cuando se esté utilizando la aplicación",
     "locationAlways": "Siempre",
     "edit": "Editar",
     "fi": "suomi",
@@ -361,7 +361,7 @@
     },
     "infoBottomSheet": {
       "closeAccessibilityLabel": "Cerrar la información en el mapa",
-      "weatherSymbolsTitle": "Símbolos metereológicos",
+      "weatherSymbolsTitle": "Símbolos meteorológicos",
       "mapLayersInfoTitle": "Información de la capa del mapa",
       "showMore": "Mostrar mas",
       "showLess": "Mostrar menos",
@@ -372,31 +372,31 @@
         "moderate": "moderada",
         "strong": "fuerte",
         "precipitationFin": {
-          "description": "Composición de los radares de Colombia  en un lapso de tiempo de  15-minutos.",
+          "description": "Composición de los radares de Colombia  en un lapso de tiempo de  15 minutos.",
           "observation": "La observación de precipitación presentada en el mapa ha sido medida con radares meteorológicos en Colombia.",
           "forecast": "La precipitación pronosticada  de lluvia a corto plazo se basa en las imágenes de radar y modelos de pronóstico meteorológico"
         },
         "precipitationScan": {
           "description": "Composición de los radares de Colombia  en un lapso de tiempo de  1 hora.",
           "observation": "La observación de precipitación presentada en el mapa ha sido medida con radares meteorológicos en Colombia.",
-          "forecast": "La precipitación pronosticada  de lluvia a corto plazo se basa en las imágenes de radar y modelos de pronóstico meteorológico."
+          "forecast": "La precipitación pronosticada  de lluvia a corto plazo se basa en imágenes de radar y modelos de pronóstico meteorológico."
         }
       },
       "lightnings15": {
         "title": "Rayos",
-        "description": "La capa de rayos muestra los impactos de rayos observados en la zona. La visualización se basa en la duración de los rayos.",
+        "description": "La capa de rayos muestra los impactos observados de los rayos en la zona. La visualización se basa en la duración de los rayos.",
         "age1": " Rayos de 0-15 minutos ",
         "age2": "Rayos de 15-30 minutos"
       },
       "lightnings60": {
         "title": "Rayos",
-        "description": "La capa de rayos muestra los impactos de rayos observados en la zona. La visualización se basa en la duración de los rayos.",
-        "age1": "Rayos de  0-15 minutes",
+        "description": "La capa de rayos muestra los impactos observados de los rayos en la zona. La visualización se basa en la duración de los rayos.",
+        "age1": "Rayos de  0-15 minutos",
         "age2": " Rayos de 15-75 minutes"
       },
       "windArrows": {
         "title": "Fechals del viento",
-        "description": "Las flechas de viento muestran la dirección y la intensidad del viento promedio en 10 minutos. La intensidad se visualiza mediante el color y el tamaño de la flecha.",
+        "description": "Las flechas de viento muestran la dirección y la intensidad del viento promedio en un intervalo de 10 minutos. La intensidad se visualiza mediante el color y el tamaño de la flecha.",
         "arrow0": "Calmado 0.1-1 m/s",
         "arrow1": "Brisa suave 1-4 m/s",
         "arrow2": "Brisa  Moderada 4-8 m/s",
@@ -405,8 +405,8 @@
         "arrow5": "Tormenta 21-32 m/s",
         "arrow6": "Huracán 32-> m/s",
         "layerInfo" : {
-          "short": "La capa muestra la dirección e intensidad del viento en intervalos de 1 hora,  a partir de la siguente hora en adelante, durante 24 horas.",
-          "long": "La capa muestra la dirección e intensidad del viento en intervalos de 3 horas,  a partir de la siguente hora en adelante, durante tres días."
+          "short": "La capa muestra la dirección e intensidad del viento en intervalos de 1 hora,  a partir de la siguiente hora en adelante, durante 24 horas.",
+          "long": "La capa muestra la dirección e intensidad del viento en intervalos de 3 horas, a partir de la siguiente hora durante tres días."
         }
       },
       "temperature": {
@@ -417,15 +417,15 @@
         "temperature0": "0°C",
         "temperature20": "20°C",
         "layerInfo" : {
-          "short": "La capa muestra la temperatura en intervalos de 1 hora, a partir de la siguente hora en adelante, durante 24 horas.",
-          "long": "La capa muestra la temperatura en intervalos de 3 horas, a partir de la siguente hora en adelante, durante tres días."
+          "short": "La capa muestra la temperatura en intervalos de 1 hora, a partir de la siguiente hora en adelante, durante 24 horas.",
+          "long": "La capa muestra la temperatura en intervalos de 3 horas,a partir de la siguiente hora en adelante, durante tres días."
         }
       },
-      "timeseriesLayerInfo": "El pronóstico del tiempo en el mapa muestra el símbolo meteorológico y la temperatura para numerosas ubicaciones alrededor del mundo. Toca el símbolo para ver más información meteorológica."
+      "timeseriesLayerInfo": "El pronóstico del tiempo en el mapa muestra el símbolo meteorológico y la temperatura en numerosas ubicaciones de todo el mundo. Toca el símbolo para ver más información meteorológica."
     }
   },
   "searchScreen": {
-    "label": "Buscar una ubación",
+    "label": "Buscar una ubicación",
     "placeholder": "Escribir la ubicación...",
     "recentSearches": "Busquedas anteriores",
     "favorites": "Mis ubicaciones",
@@ -433,7 +433,7 @@
     "locate": "Encontrar mi ubicación",
     "clear": "Borrar búsqueda",
     "clearFavorites": "Borrar todas mis ubicaciones",
-    "clearRecentSearches": "Borrar las busquedas anteriores",
+    "clearRecentSearches": "Borrar las búsquedas anteriores",
     "noResults": "No se encontraron resultados",
     "remember": "Recordar",
     "choose": "Mostrar información meteorológica para la ubicación",
@@ -448,12 +448,12 @@
       "saveAndDeleteTitle": "Guardar y eliminar mis ubicaciones",
       "savedLocation": "Ubiación guardada",
       "unsavedLocation": "ubicación no guardada",
-      "saveHint": "Guardar la ubicación en la memoria del app.",
+      "saveHint": "Guardar la ubicación en la memoria de la app.",
       "deleteHint": "Eliminar la ubicación guardada.",
       "deleteElaboration": "Los últimos lugares eliminados se muestran en Lugares anteriores.",
       "locateTitle": "Encontrar mi ubicación",
       "locateHint": "Encontrar mi ubicación.",
-      "locateElaboration": "La aplicación intenta localizar el dispositivo del usuario y obtener los datos meteorológicos basados en la ubicación encontrada. La precisión de la ubicación depende del dispositivo del usuario, no de la aplicación."
+      "locateElaboration": "La aplicación intenta localizar el dispositivo del usuario y obtener los datos meteorológicos a partir de la ubicación obtenida. La precisión de la ubicación depende del dispositivo del usuario, no de la aplicación."
     }
   },
   "symbols": {
@@ -469,10 +469,10 @@
     "21": "Lluvias aisladas",
     "24": "Lluvias dispersas",
     "27": "Chubascos",
-    "31": "Parcialmente nublado con periodos de Lluvia ligera",
+    "31": "Parcialmente nublado con periodos de lluvia ligera",
     "32": "Parcialmente nublado con periodos de lluvia moderada",
     "33": "Parcialmente nublado con periodos de lluvia fuerte",
-    "34": "Mayormente nublado con periodos de Lluvia ligera",
+    "34": "Mayormente nublado con periodos de lluvia ligera",
     "35": "Mayormente nublado con periodos de lluvia moderada",
     "36": "Mayormente nublado con periodos de lluvia fuerte",
     "37": "Lluvia ligera",
@@ -493,7 +493,7 @@
     "54": "Chubascos dispersos ligeros de nieve",
     "55": "Chubascos dispersos moderados de nieve",
     "56": "Chubascos dispersos fuertes de nieve",
-    "57": "Nevada de poco intensidad",
+    "57": "Nevada de poca intensidad",
     "58": "Nevada de intensidad moderada",
     "59": "Nevada fuerte",
     "61": "Chubascos aislados de granizo",
@@ -549,9 +549,9 @@
     "177": "$t(symbols:77)"
   },
   "warnings": {
-    "panelTitle": "Advertencias en áreas continentales",
+    "panelTitle": "Alerta",
     "panelTitleSlim": "Alerta",
-    "panelTitleCap": "Alerta",
+    "panelTitleCap": "Alertas en Colombia",
     "warningsForNDays": "Alertas {{ days }} días",
     "capUpdated": "Actualizado",
     "lastUpdated": "Últuma actualización",
@@ -560,7 +560,7 @@
     "hasWarnings": "alertas activas",
     "noWarnings": "condiciones normales",
     "noWarningsText": "Condiciones normales",
-    "navigateToWarningsPage": "navegar en la pagina de alertas",
+    "navigateToWarningsPage": "navegar en la página de alertas",
     "dateOpenHint": "mostrar las alertas activas para hoy",
     "moreAccessibilityHint": "mostrar descripción detallada de la alerta",
     "lessAccessibilityHint": "ocultar descripción detallada de la alerta",
@@ -590,34 +590,34 @@
       "dailyBadge": "2 alertas están vigentes durante el día",
       "mapTitle": "Leyendas del mapa",
       "timezone": "Huso horario",
-      "timezoneText": "Todos los horarios en la aplicación se muestran según el huso horario seleccionado."
+      "timezoneText": "Todos los horarios de la aplicación se muestran según el huso horario seleccionado."
     },
     "capInfo": {
       "dailyTitle": "Línea de tiempo - Leyenda diaria",
       "example": "Ejemplo",
-      "example1Text": "Condiciones de tiempo adverso en horas de la tarde",
+      "example1Text": "Condiciones de tiempo adversas en horas de la tarde",
       "example2Text": "Se prevé incremento de las condiciones moderadas a fuertes a lo largo del día",
       "warningExplanationsOnLand": "Explicaciones de alertas para zonas terrestres",
       "warningExplanationsAtSea": "Explicaciones de alertas para zonas marítimas",
       "warningColorsExplanation": "Explicaciones de las alertas por colores",
       "timezone": "Huso horario",
-      "timezoneText": "Todos los horarios en la aplicación se muestran según el huso horario seleccionado.",
+      "timezoneText": "Todos los horarios de la aplicación se muestran según el huso horario seleccionado.",
       "areas": "{{ count }} municipios"
     }
   },
   "setUp": {
-    "termsAndConditions": "Terminos y Condiciónes de uso",
-    "termsAndConditionsDescription": "Se deben aceptar los términos y condiciones de uso para utilizar el servicio. Obtén más información sobre los términos y condiciones de uso haga click el enlace de los Términos y Condiciones de uso.",
+    "termsAndConditions": "Términos y Condiciones de uso",
+    "termsAndConditionsDescription": "Se deben aceptar los términos y condiciones de uso para utilizar el servicio. Obtén más información sobre los términos y condiciones de uso. Haz clic en el enlace de los Términos y Condiciones de uso.",
     "accept": "Aceptar",
     "location": "Ubicación",
-    "locationDescription": "La app utiliza la ubicación del dispositivo celular para localizar al usuario. La ubicación se usa solo para fines de visualización. ",
+    "locationDescription": "La app utiliza la ubicación del dispositivo celular para localizar al usuario. La ubicación se utiliza únicamente con fines de visualización. ",
     "showBuiltInLocationPermissionQuestion": "Siguiente"
   },
   "onboarding": {
     "next": "Siguiente",
     "skip": "Saltar",
     "weatherTitle": "Pronóstico del tiempo y observaciones meteorológicas",
-    "weatherDescription": "Puedes ver información versátil de pronóstico y observación del tiempo en un formato que se adapte a sus necesidades",
+    "weatherDescription": "Puedes ver información versátil de pronóstico y observación del tiempo en un formato que se adapte a tus necesidades",
     "mapTitle": "Mapa",
     "mapDescription": "Por ejemplo, puedes ver el movimiento de las lluvias en las próximas horas en el mapa.",
     "warningsTitle": "Alertas",
@@ -631,7 +631,7 @@
     "closeButtonAccessibilityHint": "Cerrar los Términos y Condiciones de Uso y regresar a la pantalla anterior.",
     "generalTitle": "Términos de uso de la aplicación móvil para el pronóstico meteorológico del Instituto de Hidrología, Meteorología y Estudios Ambientales (IDEAM)",
     "contentsTitle": "1. Derechos de uso",
-    "contentsDescription": "El usuario de la aplicación tiene el derecho de utilizar la aplicación de acuerdo con estos términos de uso. El derecho de uso no es exclusivo y no puede ser transferido a un tercero. La licencia expira cuando el usuario elimina la aplicación. El usuario de la aplicación es responsable de la adquisición del equipo, software y conexiones de telecomunicaciones necesarias para utilizar la aplicación, los costos incurridos y el funcionamiento de los dispositivos, software y conexiones. El usuario deberá asegurarse de utilizar la aplicación en un entorno seguro.",
+    "contentsDescription": "El usuario de la aplicación tiene derecho a utilizarla de acuerdo con estos términos de uso. El derecho de uso no es exclusivo y no puede ser transferido a un tercero. La licencia expira cuando el usuario elimina la aplicación. El usuario de la aplicación es responsable de la adquisición del equipo, software y conexiones de telecomunicaciones necesarios para utilizar la aplicación, de los costos incurridos y del funcionamiento de los dispositivos, software y conexiones. El usuario deberá asegurarse de utilizar la aplicación en un entorno seguro.",
     "generalDescription": "These terms of use apply to the use of the Weather mobile application (henceforth ‘application’) maintained by the Finnish Meteorological Institute. The purpose of the application is to provide the user with weather observations, forecasts and warnings. These terms of use constitute the agreement between the Finnish Meteorological Institute and the user of the application. These terms of use are binding and must be approved by the user when taking the application into use. The use of the application is voluntary. The application is provided through the App Store, Google Play Store or Huawei AppGallery, meaning that the user must comply with both these terms of use and the terms of use of the service provider in question.",
     "personalInfoTitle": "2. Personal data",
     "personalInfoDescription": "La aplicación no recopila ningún dato personal ni información relacionada con la ubicación o el movimiento. En cualquier momento, el usuario puede acceder a la configuración de la aplicación y modificar o cancelar los permisos que haya otorgado. El Instituto de Hidrología, Meteorología y Estudios Ambientales (IDEAM) puede utilizar subcontratistas para habilitar el servicio proporcionado a través de la aplicación.",
@@ -643,18 +643,18 @@
     "applicableLawTitle": "6. Ley aplicable y disputas",
     "applicableLawDescription": "Estos términos de uso se rigen por la legislación colombiana, con excepción de los conflictos entre diferentes leyes. Cualquier disputa se resolverá ante un Juzgado de circuito de Bogotá.",
     "contactDetailsTitle": "7. Información de contacto",
-    "contactDetailsDescription": "Instituto de Hidrología, Meteorología y Estudios Ambientales (IDEAM),  Calle 25 D No. 96 B - 70 Bogotá D.C. Codigo Postal: 110911"
+    "contactDetailsDescription": "nstituto de Hidrología, Meteorología y Estudios Ambientales (IDEAM),  Calle 25 D No. 96 B - 70 Bogotá D.C. Código Postal: 110911"
   },
   "feedback": {
     "title": "¡Gracias por ayudarnos a mejorar nuestros servicios!",
-    "body1": "Use el botón enviar comentarios para darnos su opinión sobre la aplicación. El botón lo llevará al programa de correo electrónico de su teléfono celular.",
+    "body1": "Use el botón Enviar comentarios para darnos su opinión sobre la aplicación. El botón lo llevará al programa de correo electrónico de su teléfono celular.",
     "body2": "Procesaremos todos los comentarios que recibamos, pero no podemos garantizar una respuesta personalizada.",
     "sendFeedback": "Enviar comentarios",
     "moveToHint": "Ir a su aplicación de correo"
   },
   "error": {
     "forecastErrorTitle": "Error al cargar los datos del pronóstico",
-    "observationErrorTitle": "Error al cargar los datos de las observaciones metereológicas",
+    "observationErrorTitle": "Error al cargar los datos de las observaciones meteorológicas",
     "warningsErrorTitle": "Error al cargar los datos de las alertas",
     "overlaysErrorTitle": "Error al cargar el mapa",
     "noInternetTitle": "Sin conexión a internet",
@@ -665,6 +665,6 @@
   "announcements": {
     "crisisPrefix": "Alertas:",
     "maintenancePrefix": "Atención:",
-    "openInBrowser": "Abrír en el buscador"
+    "openInBrowser": "Abrir en el buscador"
   }
 }
