@@ -191,7 +191,7 @@ const LocalWarningsBar: React.FC<LocalWarningsBarProps> = ({
     setSelectedDay(0);
   }, [localWarnings]);
 
-  if (loading) {
+  if (loading && !capWarnings) {
     return (
       <MotiView style={{backgroundColor: colors.background}}>
         <View style={styles.loading}>
@@ -206,7 +206,6 @@ const LocalWarningsBar: React.FC<LocalWarningsBarProps> = ({
       </MotiView>
     );
   }
-
 
   if (!currentLocation) return null;
 
