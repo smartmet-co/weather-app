@@ -93,23 +93,22 @@ const CapWarningsView: React.FC<CapWarningsViewProps> = ({
 
   return (
     <View>
-      { capViewSettings?.localWarningsEnabled &&
-        defaultLocation?.country === currentLocation.country && (
-        <LocalWarningsBar />
+      { capViewSettings?.localWarningsEnabled
+        && defaultLocation?.country === currentLocation.country
+        && capViewSettings?.localWarningsAfterCountry !== true && (
+        <LocalWarningsBar legendSheetRef={legendSheetRef} />
       )}
       <View>
-        <PanelHeader title={t('panelTitleCap')} background={colors.background} justifyCenter />
+        <PanelHeader title={t('panelTitleCap')} background={colors.cardHeader} justifyCenter />
         <View
           style={[
             styles.dataSourcePanelContainer,
-            { backgroundColor: colors.cardHeader },
           ]}>
           <View
             style={[
               styles.flex,
               styles.row,
               styles.spaceBetween,
-              { backgroundColor: colors.cardHeader },
             ]}>
             <View
               style={[
@@ -161,6 +160,11 @@ const CapWarningsView: React.FC<CapWarningsViewProps> = ({
         <PanelHeader title={textViewTitle} background={colors.background} justifyCenter />
         <TextList capData={capWarnings} dates={dates} />
       </View>
+      { capViewSettings?.localWarningsEnabled
+        && defaultLocation?.country === currentLocation.country
+        && capViewSettings?.localWarningsAfterCountry && (
+        <LocalWarningsBar legendSheetRef={legendSheetRef} />
+      )}
       <RBSheet
         ref={legendSheetRef}
         height={600}

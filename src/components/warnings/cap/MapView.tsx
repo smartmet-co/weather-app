@@ -202,7 +202,7 @@ const MapView: React.FC<MapViewProps> = ({
               ))
             )}
       </Map>
-      { loading ? (
+      { loading && !capData ? (
         Platform.OS === 'android' ?
           <ActivityIndicator size="large" color={colors.primary} />
           : (
