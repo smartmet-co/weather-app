@@ -106,6 +106,32 @@ const CapWarningsLegend = ({ onClose }: { onClose: () => void }) => {
                 {t('warnings:capInfo:example2Text')}
               </Text>
             </View>
+            <View style={[styles.legendRow, styles.warningCount]}>
+              <View
+                accessibilityElementsHidden
+                style={[
+                  styles.countBadge,
+                  {
+                    borderColor: colors.primaryText,
+                    backgroundColor: colors.background,
+                  },
+                ]}>
+                  <Text
+                    maxFontSizeMultiplier={1.5}
+                    style={[styles.badgeText, { color: colors.primaryText }]}>
+                    2
+                  </Text>
+              </View>
+              <View>
+                <Text
+                  style={[
+                    styles.severityBarLegendText,
+                    { color: colors.hourListText },
+                  ]}>
+                  {t('warnings:capInfo:numberOfActiveWarnings')}
+                </Text>
+              </View>
+            </View>
           </View>
           <View style={styles.contentContainer}>
             <Text style={[styles.headingText, { color: colors.primaryText }]}>
@@ -209,6 +235,23 @@ const styles = StyleSheet.create({
   eventText: {
     marginLeft: 16,
     width: '100%',
+  },
+  warningCount: {
+    marginTop: 20,
+  },
+  countBadge: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderWidth: 1.5,
+    justifyContent: 'center',
+    marginRight: 28,
+  },
+  badgeText: {
+    textAlign: 'center',
+    fontSize: 14,
+    fontFamily: 'Roboto-Bold',
+    fontWeight: 'bold',
   },
 });
 
