@@ -645,7 +645,8 @@
       "warningColorsExplanation": "Explanations of warning colors",
       "timezone": "Time zone",
       "timezoneText": "All times on the application are displayed according to the selected time zone.",
-      "areas": "{{ count }} municipalities"
+      "areas": "{{ count }} municipalities",
+      "numberOfActiveWarnings": "Number of active warnings"
     }
   },
   "setUp": {

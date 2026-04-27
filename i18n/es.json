@@ -602,7 +602,8 @@
       "warningColorsExplanation": "Explicaciones de las alertas por colores",
       "timezone": "Huso horario",
       "timezoneText": "Todos los horarios de la aplicación se muestran según el huso horario seleccionado.",
-      "areas": "{{ count }} municipios"
+      "areas": "{{ count }} municipios",
+      "numberOfActiveWarnings": "Número de alertas activas"
     }
   },
   "setUp": {
