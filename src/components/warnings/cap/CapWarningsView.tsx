@@ -99,18 +99,16 @@ const CapWarningsView: React.FC<CapWarningsViewProps> = ({
         <LocalWarningsBar legendSheetRef={legendSheetRef} />
       )}
       <View>
-        <PanelHeader title={t('panelTitleCap')} background={colors.background} justifyCenter />
+        <PanelHeader title={t('panelTitleCap')} background={colors.cardHeader} justifyCenter />
         <View
           style={[
             styles.dataSourcePanelContainer,
-            { backgroundColor: colors.cardHeader },
           ]}>
           <View
             style={[
               styles.flex,
               styles.row,
               styles.spaceBetween,
-              { backgroundColor: colors.cardHeader },
             ]}>
             <View
               style={[
