@@ -20,6 +20,7 @@ import {
   toPrecision,
 } from '@utils/units';
 import { ClockType, UnitMap } from '@store/settings/types';
+import { REGULAR_FONT, BOLD_FONT } from '@assets/constants';
 
 type ForecastListColumnProps = {
   clockType: ClockType;
@@ -44,6 +45,7 @@ const ForecastListColumn: React.FC<ForecastListColumnProps> = ({
   const activeParameters = Config.get('weather').forecast.data.flatMap(
     ({ parameters }) => parameters
   );
+  const defaultUnits = Config.get('settings').units;
 
   const time = moment
     .unix(data.epochtime)
@@ -109,8 +111,7 @@ const ForecastListColumn: React.FC<ForecastListColumnProps> = ({
             );
           }
           if (param === constants.WIND_SPEED_AND_DIRECTION) {
-            const windSpeedUnit =
-              units?.wind.unitAbb ?? Config.get('settings').units.wind;
+            const windSpeedUnit = units?.wind.unitAbb ?? defaultUnits.wind;
             const convertedWindSpeed =
               data.windSpeedMS || data.windSpeedMS === 0
                 ? toPrecision(
@@ -172,9 +173,7 @@ const ForecastListColumn: React.FC<ForecastListColumnProps> = ({
             );
           }
           if (param === constants.TEMPERATURE) {
-            const temperatureUnit =
-              units?.temperature.unitAbb ??
-              Config.get('settings').units.temperature;
+            const temperatureUnit = units?.temperature.unitAbb ?? defaultUnits.temperature;
             const convertedTemperature =
               data.temperature || data.temperature === 0
                 ? toPrecision(
@@ -210,9 +209,7 @@ const ForecastListColumn: React.FC<ForecastListColumnProps> = ({
             );
           }
           if (param === constants.FEELS_LIKE) {
-            const temperatureUnit =
-              units?.temperature.unitAbb ??
-              Config.get('settings').units.temperature;
+            const temperatureUnit = units?.temperature.unitAbb ?? defaultUnits.temperature;
             const convertedFeelsLike =
               data.feelsLike || data.feelsLike === 0
                 ? toPrecision(
@@ -250,9 +247,7 @@ const ForecastListColumn: React.FC<ForecastListColumnProps> = ({
           }
 
           if (param === constants.DEW_POINT) {
-            const temperatureUnit =
-              units?.temperature.unitAbb ??
-              Config.get('settings').units.temperature;
+            const temperatureUnit = units?.temperature.unitAbb ?? defaultUnits.temperature;
             const convertedDewPoint =
               data.dewPoint || data.dewPoint === 0
                 ? toPrecision(
@@ -321,7 +316,6 @@ const ForecastListColumn: React.FC<ForecastListColumnProps> = ({
             );
           }
 
-          const defaultUnits = Config.get('settings').units;
           const precipitationUnit =
             units?.precipitation.unitAbb ?? defaultUnits.precipitation;
           const precipitationPrecision =
@@ -440,7 +434,7 @@ const styles = StyleSheet.create({
   },
   hourText: {
     fontSize: 16,
-    fontFamily: 'Roboto-Bold',
+    fontFamily: BOLD_FONT,
   },
   hourColumn: {
     width: 52,
@@ -464,7 +458,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   regularText: {
-    fontFamily: 'Roboto-Regular',
+    fontFamily: REGULAR_FONT,
     fontSize: 16,
   },
 });

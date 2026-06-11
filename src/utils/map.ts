@@ -130,7 +130,7 @@ export const getOverlayData = async (activeOverlay: number, library: MapLibrary)
   return getWMSLayerUrlsAndBounds(sources, overlay, library);
 };
 
-const getTimeseriesData = async (
+export const getTimeseriesData = async (
   sources: { [name: string]: string },
   overlay: MapLayer
 ): Promise<Map<number, MapOverlay> | undefined> => {
@@ -257,7 +257,7 @@ const parseWmsTimeBounds = (dimText: string): TimeBounds => {
   return { layerStart: first.start, layerEnd: last.end };
 };
 
-const getWMSLayerUrlsAndBounds = async (
+export const getWMSLayerUrlsAndBounds = async (
   sources: { [name: string]: string },
   overlay: MapLayer,
   library: MapLibrary
@@ -342,10 +342,10 @@ const getWMSLayerUrlsAndBounds = async (
         (dim) => dim.name === 'reference_time'
       );
 
-      let referenceTime: string | undefined;
-      if (referenceTimeDimension) {
-        referenceTime = referenceTimeDimension.default;
-      }
+      const referenceTime =
+        layerSrc.referenceTimeEnabled !== false && referenceTimeDimension
+          ? referenceTimeDimension.default
+          : undefined;
 
       const url = sources[layerSrc.source];
 
@@ -361,13 +361,13 @@ const getWMSLayerUrlsAndBounds = async (
         transparent: 'true',
         layers: layerSrc.layer,
         bbox: library === 'maplibre' ? '{bbox-epsg-3857}' : '{minX},{minY},{maxX},{maxY}',
-        width: library === 'maplibre' ? '256' : '{width}',
-        height: library === 'maplibre' ? '256' : '{height}',
+        width: library === 'maplibre' ? '512' : '{width}',
+        height: library === 'maplibre' ? '512' : '{height}',
         format: `image/${layer.tileFormat ?? 'png'}`,
         srs: 'EPSG:3857',
         crs: 'EPSG:3857',
         ...customParameters,
-        ...(referenceTime ? { reference_time: referenceTime } : {}),
+        ...(referenceTime ? { dim_reference_time: referenceTime } : {}),
       });
 
       const overlayUrl = decodeURIComponent(`${url}/wms?${query.toString()}`);
@@ -445,4 +445,3 @@ export const isPointInsideBoundingBox = (point: Coordinate, bbox: BBox) =>
   point.latitude <= bbox.maxLatitude &&
   point.longitude >= bbox.minLongitude &&
   point.longitude <= bbox.maxLongitude;
-

@@ -12,7 +12,11 @@ import {
 import { connect, ConnectedProps } from 'react-redux';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StackNavigationOptions, StackNavigationProp } from '@react-navigation/stack';
+import {
+  StackHeaderProps,
+  StackNavigationOptions,
+  StackNavigationProp,
+} from '@react-navigation/stack';
 import type { NavigationState, Route } from '@react-navigation/routers';
 import RBSheet from 'react-native-raw-bottom-sheet';
 
@@ -32,6 +36,7 @@ import Icon from '@components/common/ScalableIcon';
 import AccessibleTouchableOpacity from '@components/common/AccessibleTouchableOpacity';
 import HeaderButton from '@components/common/HeaderButton';
 import CommonHeaderTitle from '@components/common/CommonHeaderTitle';
+import AnnouncementsHeader from '@components/announcements/AnnouncementsHeader';
 
 import { State } from '@store/types';
 import { selectTheme } from '@store/settings/selectors';
@@ -68,6 +73,7 @@ import { sendMatomoEvents, trackMatomoEvent } from '@utils/matomo';
 import HeaderBackImage from '@components/common/HeaderBackImage';
 import HeaderTitle from '@components/common/HeaderTitle';
 import packageJSON from '../../package.json';
+import { MEDIUM_FONT, BOLD_FONT } from '@assets/constants';
 
 const mapStateToProps = (state: State) => ({
   initialTab: selectInitialTab(state),
@@ -207,7 +213,7 @@ const Navigator: React.FC<Props> = ({
       headerBackTestID: 'header-back',
       headerTintColor: useDarkTheme ? PRIMARY_DARK : PRIMARY_LIGHT,
       headerTitleStyle: {
-        fontFamily: 'Roboto-Bold',
+        fontFamily: BOLD_FONT,
       },
       headerStyle: {
         ...styles.header,
@@ -304,17 +310,25 @@ const Navigator: React.FC<Props> = ({
   );
 
   const mapScreenOptions = useMemo(
-    () => LocationHeaderOptions({ navigation: navigationRef as any })
+    () => ({
+      ...LocationHeaderOptions({ navigation: navigationRef as any }),
+      // eslint-disable-next-line react/no-unstable-nested-components
+      header: (props: StackHeaderProps) => <AnnouncementsHeader {...props} />,
+    })
     , [LocationHeaderOptions, navigationRef]);
 
   const weatherScreenOptions = useMemo(() =>
-    weatherLayout === 'fmi'
+    weatherLayout === 'vertical'
       ? { headerShown: false }
       : LocationHeaderOptions({ navigation: navigationRef as any }),
     [LocationHeaderOptions, navigationRef, weatherLayout]);
 
   const warningsScreenOptions = useMemo(
-    () => LocationHeaderOptions({ navigation: navigationRef as any }),
+    () => ({
+      ...LocationHeaderOptions({ navigation: navigationRef as any }),
+      // eslint-disable-next-line react/no-unstable-nested-components
+      header: (props: StackHeaderProps) => <AnnouncementsHeader {...props} />,
+    }),
     [LocationHeaderOptions, navigationRef] );
 
   if (!ready || !theme) {
@@ -575,7 +589,7 @@ const Navigator: React.FC<Props> = ({
 
 const styles = StyleSheet.create({
   tabText: {
-    fontFamily: 'Roboto-Medium',
+    fontFamily: MEDIUM_FONT,
     fontSize: 14,
   },
   sheetContainer: {

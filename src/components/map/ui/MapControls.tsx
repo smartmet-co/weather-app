@@ -28,12 +28,17 @@ const MapControls: React.FC<MapControlsProps> = ({
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
   const isLandscape = useOrientation();
+
   return (
     <View style={styles.wrapper} pointerEvents="box-none">
       {showRelocateButton && (
         <RelocateButton
           onPress={relocate}
-          style={[styles.mapButton, styles.center, styles.topFirst]}
+          style={[
+            styles.mapButton,
+            styles.center,
+            styles.topFirst,
+          ]}
         />
       )}
       <MapButton
@@ -42,7 +47,7 @@ const MapControls: React.FC<MapControlsProps> = ({
           styles.right,
           styles.topFirst,
           isLandscape && styles.left,
-          isLandscape ? { left: insets.left + 12 } : { right: insets.right + 12 }
+          isLandscape ? { left: insets.left + 12 } : { right: insets.right + 12 },
         ]}
         accessibilityLabel={t('map:plusButtonAccessibilityLabel')}
         onPress={onZoomIn}
@@ -55,7 +60,7 @@ const MapControls: React.FC<MapControlsProps> = ({
           styles.right,
           styles.topSecond,
           isLandscape && styles.left,
-          isLandscape ? { left: insets.left + 12 } : { right: insets.right + 12 }
+          isLandscape ? { left: insets.left + 12 } : { right: insets.right + 12 },
         ]}
         accessibilityLabel={t('map:minusButtonAccessibilityLabel')}
         onPress={onZoomOut}
@@ -68,7 +73,7 @@ const MapControls: React.FC<MapControlsProps> = ({
           styles.mapButton,
           styles.right,
           isLandscape ? styles.topFirst : styles.bottomSecond,
-          { right: insets.right + 12 }
+          { right: insets.right + 12 },
         ]}
         accessibilityLabel={t('map:infoButtonAccessibilityLabel')}
         onPress={onInfoPressed}
@@ -81,7 +86,7 @@ const MapControls: React.FC<MapControlsProps> = ({
           styles.mapButton,
           styles.right,
           isLandscape ? styles.topSecond : styles.bottomFirst,
-          { right: insets.right + 12 }
+          { right: insets.right + 12 },
         ]}
         accessibilityLabel={t('map:layersButtonAccessibilityLabel')}
         onPress={onLayersPressed}
@@ -108,10 +113,6 @@ const styles = StyleSheet.create({
     height: 44,
     width: 44,
   },
-  // eslint-disable-next-line react-native/no-unused-styles
-  labelMapButton: {
-    minWidth: 230,
-  },
   center: {
     alignSelf: 'center',
   },
@@ -129,11 +130,11 @@ const styles = StyleSheet.create({
   },
   bottomSecond: {
     right: 12,
-    bottom: 8 + 150,
+    bottom: 185,
   },
   bottomFirst: {
     right: 12,
-    bottom: 8 + 90,
+    bottom: 125,
   },
 });
 

@@ -14,6 +14,7 @@ import Icon from '@assets/Icon';
 import Text from '@components/common/AppText';
 import CloseButton from '@components/common/CloseButton';
 import { trackMatomoEvent } from '@utils/matomo';
+import { REGULAR_FONT } from '@assets/constants';
 
 const mapStateToProps = (state: State) => ({
   data: selectForecastByDay(state),
@@ -29,6 +30,9 @@ type ModalContentProps = PropsFromRedux & {
   onClose: () => void;
   onDayChange: (forward: boolean) => void;
   initialPosition: 'start' | 'end';
+  modalMaxHeight?: number;
+  onScrollOffsetChange?: (offset: number) => void;
+  onScrollOffsetMaxChange?: (offset: number) => void;
 };
 
 const DailyModal: React.FC<ModalContentProps> = ({
@@ -37,7 +41,10 @@ const DailyModal: React.FC<ModalContentProps> = ({
   timeStamp,
   onClose,
   onDayChange,
-  initialPosition
+  initialPosition,
+  modalMaxHeight,
+  onScrollOffsetChange,
+  onScrollOffsetMaxChange,
 }) => {
   const { fontScale } = useWindowDimensions();
   const { t, i18n } = useTranslation('forecast');
@@ -100,6 +107,9 @@ const DailyModal: React.FC<ModalContentProps> = ({
       <ModalForecast
         data={data ? data[moment(timeStamp).format('D.M.')] : []}
         initialPosition={initialPosition}
+        maxHeight={modalMaxHeight}
+        onScrollOffsetChange={onScrollOffsetChange}
+        onScrollOffsetMaxChange={onScrollOffsetMaxChange}
       />
     </View>
   );
@@ -117,7 +127,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    fontFamily: 'Roboto-Regular',
+    fontFamily: REGULAR_FONT,
   },
   bold: {
     fontWeight: 'bold',

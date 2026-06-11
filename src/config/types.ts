@@ -24,6 +24,7 @@ export type WMSSource = {
   source: string;
   layer: string;
   type: 'observation' | 'forecast';
+  referenceTimeEnabled?: boolean;
   customParameters?: {
     [name: string]: string | number | { dark: string; light: string };
   };
@@ -221,6 +222,9 @@ interface Feedback {
   subject: {
     [locale: string]: string;
   };
+  faqUrl?: {
+    [locale: string]: string;
+  };
 }
 
 interface News {
@@ -269,7 +273,7 @@ interface MarkdownSettings {
 //
 // Category = who, Action = where, Name = what was done.
 export type AnalyticCategories = 'User action' | 'Init' | 'Notice' | 'Warning' | 'Error';
-export type AnalyticActions = 'Weather' | 'Map' | 'Warnings' | 'Other' | 'Search' | 'Settings' | 'Navigation' | 'Geolocation' | 'News' | 'Platform' | 'Announcements' | 'Autocomplete' | 'Timeseries' | 'WMS' | 'DynamicConfig' | 'Snapshot' | 'Not specified';
+export type AnalyticActions = 'Weather' | 'Map' | 'Warnings' | 'Other' | 'Search' | 'Settings' | 'Navigation' | 'Geolocation' | 'News' | 'Platform' | 'Announcements' | 'Autocomplete' | 'Timeseries' | 'WMS' | 'DynamicConfig' | 'Snapshot' | 'Onboarding' | 'Not specified';
 
 export interface ConfigType {
   dynamicConfig: DynamicConfigEnabled | DynamicConfigDisabled;
@@ -279,6 +283,8 @@ export interface ConfigType {
     keyword: string;
     maxRecent: number;
     maxFavorite: number;
+    maxDistance?: number;
+    useInKeyword?: boolean;
   };
   map: {
     updateInterval: number;
@@ -289,9 +295,11 @@ export interface ConfigType {
   };
   weather: {
     apiUrl: string;
-    layout?: 'default' | 'fmi' | 'legacyWithoutBackgroundColor';
+    layout?: 'default' | 'vertical' | 'legacyWithoutBackgroundColor';
+    backgroundImagesEnabled?: boolean;
     forecast: {
       ageWarning?: number;
+      maxAge?: number;
       updateInterval: number;
       timePeriod: number | string | 'data';
       forecastLengthTitle?: number;

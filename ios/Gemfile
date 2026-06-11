@@ -18,4 +18,3 @@ gem 'mutex_m'
 gem 'nkf'
 
 gem "multi_json"
-
