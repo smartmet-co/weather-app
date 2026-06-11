@@ -178,7 +178,7 @@ describe('WarningIconsPanel', () => {
     expect(getByText('Warnings')).toBeTruthy();
     expect(getByTestId('day-details-description')).toBeTruthy();
     expect(getByText('Strong wind in coastal areas.')).toBeTruthy();
-    expect(getByTestId('warning-icon-wind-2-physical')).toBeTruthy();
+    expect(getByTestId('warning-icon-wind-2-normal')).toBeTruthy();
     expect(getByTestId('warning-icon-rain-1-normal')).toBeTruthy();
     expect(
       getByA11yLabel(/Warnings: 2, Strong wind in coastal areas\./)

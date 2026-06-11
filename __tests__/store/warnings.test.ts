@@ -11,8 +11,10 @@ const warning = {
     endTime: '2026-04-27T18:00:00Z',
     startTime: '2026-04-27T06:00:00Z',
   },
+  language: 'en',
+  description: 'Wind warning',
   severity: 'Severe',
-  type: 'wind',
+  type: 'Wind and waves warning',
 } as types.Warning;
 
 const warningsData: types.WarningsData = {
@@ -120,7 +122,7 @@ describe('warnings store', () => {
     expect(selectors.selectFetchSuccessTime(state)).toBe(1000);
     expect(selectors.selectDailyWarningData(state)[0]).toMatchObject({
       count: 1,
-      type: 'wind',
+      type: 'Wind and waves warning',
       warnings: [warning],
     });
   });

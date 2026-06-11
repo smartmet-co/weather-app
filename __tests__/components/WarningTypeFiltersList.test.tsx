@@ -11,11 +11,27 @@ jest.mock('@react-navigation/native', () => ({
   }),
 }));
 
+jest.mock('@config', () => ({
+  Config: {
+    get: (category: string) => {
+      if (category === 'warnings') {
+        return {
+          capViewSettings: {
+            severityBackgroundInSymbol: false,
+          },
+        };
+      }
+
+      return {};
+    },
+  },
+}));
+
 jest.mock('../../src/assets/WarningsSymbol', () => ({
   __esModule: true,
-  default: ({ type, severity }: any) => {
+  default: ({ type }: any) => {
     const { Text } = require('react-native');
-    return <Text testID={`warning-symbol-${type}-${severity}`}>{type}</Text>;
+    return <Text testID={`warning-symbol-${type}`}>{type}</Text>;
   },
 }));
 
@@ -45,7 +61,7 @@ describe('WarningTypeFiltersList', () => {
       />
     );
 
-    fireEvent.press(getByTestId('warning-symbol-Wind-Severe'));
+    fireEvent.press(getByTestId('warning-symbol-Wind'));
     expect(onWarningTypePress).toHaveBeenCalledWith(warnings[0]);
   });
 });

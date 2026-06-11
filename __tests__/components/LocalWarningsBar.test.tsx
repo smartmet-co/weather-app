@@ -173,7 +173,7 @@ describe('LocalWarningsBar', () => {
       <LocalWarningsBar
         loading
         currentLocation={null}
-        capWarnings={[]}
+        capWarnings={undefined as any}
         clockType={24 as any}
         legendSheetRef={{ current: { open: mockSheetOpen } } as any}
       />

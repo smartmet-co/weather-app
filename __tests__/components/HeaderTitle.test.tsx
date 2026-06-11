@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 
 import HeaderTitle from '../../src/components/common/HeaderTitle';
-import { PRIMARY_BLUE, WHITE } from '../../src/assets/colors';
+import { PRIMARY_LIGHT, PRIMARY_DARK } from '../../src/assets/colors';
 
 describe('HeaderTitle', () => {
   it('renders title with light mode color', () => {
@@ -16,7 +16,7 @@ describe('HeaderTitle', () => {
       : [text.props.style];
     const mergedStyle = Object.assign({}, ...styleArray);
 
-    expect(mergedStyle.color).toBe(PRIMARY_BLUE);
+    expect(mergedStyle.color).toBe(PRIMARY_LIGHT);
     expect(text.props.maxFontSizeMultiplier).toBe(1.5);
   });
 
@@ -31,6 +31,6 @@ describe('HeaderTitle', () => {
       : [text.props.style];
     const mergedStyle = Object.assign({}, ...styleArray);
 
-    expect(mergedStyle.color).toBe(WHITE);
+    expect(mergedStyle.color).toBe(PRIMARY_DARK);
   });
 });

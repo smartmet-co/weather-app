@@ -190,7 +190,7 @@ describe('ForecastByHourList', () => {
     expect(view.getByTestId('forecast_table')).toBeTruthy();
     expect(view.getByText('18 h 0 min')).toBeTruthy();
     expect(view.getByTestId('gradient-left')).toBeTruthy();
-    expect(view.getByTestId('gradient-right')).toBeTruthy();
+    expect(view.getAllByTestId('gradient-right')).toHaveLength(2);
     expect(mockForecastListHeaderColumn).toHaveBeenCalledWith(
       expect.objectContaining({
         displayParams: [

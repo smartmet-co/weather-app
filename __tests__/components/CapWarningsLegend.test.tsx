@@ -21,8 +21,34 @@ jest.mock('@react-navigation/native', () => ({
   }),
 }));
 
-jest.mock('i18next', () => ({
-  t: (key: string) => key,
+jest.mock('i18next', () => {
+  const i18n = {
+    use: jest.fn().mockReturnThis(),
+    init: jest.fn().mockReturnThis(),
+    t: (key: string) => key,
+  };
+
+  return {
+    __esModule: true,
+    default: i18n,
+    t: i18n.t,
+  };
+});
+
+jest.mock('@config', () => ({
+  Config: {
+    get: (category: string) => {
+      if (category === 'warnings') {
+        return {
+          capViewSettings: {
+            severityBackgroundInSymbol: false,
+          },
+        };
+      }
+
+      return {};
+    },
+  },
 }));
 
 jest.mock('@components/common/CloseButton', () => ({
@@ -43,6 +69,14 @@ jest.mock('../../src/components/warnings/TypeColorRow', () => ({
   default: ({ severity }: any) => {
     const { Text } = require('react-native');
     return <Text testID={`type-color-row-${severity}`}>{severity}</Text>;
+  },
+}));
+
+jest.mock('@assets/Icon', () => ({
+  __esModule: true,
+  default: ({ name }: any) => {
+    const { Text } = require('react-native');
+    return <Text testID={`icon-${name}`}>{name}</Text>;
   },
 }));
 

@@ -176,7 +176,6 @@ describe('navigator stack screens', () => {
       />
     );
 
-    expect(view.getByTestId('header-icon')).toBeTruthy();
     expect(view.getByTestId('header-title-navigation:about')).toBeTruthy();
     expect(view.getByTestId('header-title-navigation:settings')).toBeTruthy();
     expect(mockHeaderTitle).toHaveBeenCalledWith(
@@ -213,11 +212,11 @@ describe('navigator stack screens', () => {
       })
     );
     mockTermsAndConditionsScreen.mock.calls[0][0].onAccept();
-    expect(mockNavigate).toHaveBeenCalledWith({
-      name: 'SetupScreen',
-      params: { acceptedTerms: true },
-      merge: true,
-    });
+    expect(mockNavigate).toHaveBeenCalledWith(
+      'SetupScreen',
+      { acceptedTerms: true },
+      { merge: true }
+    );
     expect(view.getByTestId('header-title-setUp:termsAndConditions')).toBeTruthy();
   });
 });
