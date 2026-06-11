@@ -31,6 +31,7 @@ import { selectClockType } from '@store/settings/selectors';
 import { Config } from '@config';
 import ForecastListColumn from './ForecastListColumn';
 import ForecastListHeaderColumn from './ForecastListHeaderColumn';
+import { MEDIUM_FONT, BOLD_FONT } from '@assets/constants';
 
   const lightGradient = [
     'rgba(177, 221, 255, 0.64)',
@@ -488,11 +489,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   bold: {
-    fontFamily: 'Roboto-Bold',
+    fontFamily: BOLD_FONT,
   },
   panelText: {
     fontSize: 14,
-    fontFamily: 'Roboto-Medium',
+    fontFamily: MEDIUM_FONT,
   },
   withMarginRight20: {
     marginRight: 20,

@@ -29,7 +29,7 @@ import ForecastListColumn from './ForecastListColumn';
 import ForecastListHeaderColumn from './ForecastListHeaderColumn';
 
 import TimeSelectButtonGroup from './TimeSelectButtonGroup';
-import { MAX_PARAMETERS_WITHOUT_SCROLL } from './constants';
+import { MEDIUM_FONT, BOLD_FONT } from '@assets/constants';
 // import { trackMatomoEvent } from '@utils/matomo';
 
 const mapStateToProps = (state: State) => ({
@@ -45,6 +45,9 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type ModalForecastProps = PropsFromRedux & {
   data: TimeStepData[];
   initialPosition?: 'start' | 'end';
+  maxHeight?: number;
+  onScrollOffsetChange?: (offset: number) => void;
+  onScrollOffsetMaxChange?: (offset: number) => void;
 };
 
 const ModalForecast: React.FC<ModalForecastProps> = ({
@@ -53,6 +56,9 @@ const ModalForecast: React.FC<ModalForecastProps> = ({
   clockType,
   units,
   initialPosition,
+  maxHeight,
+  onScrollOffsetChange,
+  onScrollOffsetMaxChange,
 }) => {
   const { fontScale } = useWindowDimensions();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -67,24 +73,30 @@ const ModalForecast: React.FC<ModalForecastProps> = ({
   // const lastTracked = useRef(0);
 
   useEffect(() => {
+    if (!data || data.length === 0) return;
+
     if (initialPosition === 'start') {
       setCurrentIndex(0);
-      flatListRef.current?.scrollToIndex({
-        animated: false,
-        index: 0,
-        viewPosition: 0,
-      });
+      setTimeout(() => {
+        flatListRef.current?.scrollToIndex({
+          animated: false,
+          index: 0,
+          viewPosition: 0,
+        });
+      }, 50);
     } else {
       setCurrentIndex(data.length - 1);
-      flatListRef.current?.scrollToIndex({
-        animated: false,
-        index: data.length - 1,
-        viewPosition: 0,
-      });
+      setTimeout(() => {
+        flatListRef.current?.scrollToIndex({
+          animated: false,
+          index: data.length - 1,
+          viewPosition: 0,
+        });
+      }, 50);
     }
   }, [data, initialPosition]);
 
-  if (!data) return null;
+  if (!data || data.length === 0) return null;
 
   const startHour = parseInt(data[0].localtime.substring(9, 11), 10);
   const endHour = parseInt(data[data.length-1].localtime.substring(9, 11), 10);
@@ -100,11 +112,10 @@ const ModalForecast: React.FC<ModalForecastProps> = ({
     setCurrentIndex(index);
   };
 
-  // Large content should have horizontal scrolling,
-  // otherwise disable scrolling so that swipe to close works
-  const shouldHorizontalScroll = height < 500 || (height < 900 && displayParams.length > MAX_PARAMETERS_WITHOUT_SCROLL);
   const isWideDisplay = width > 500;
-  const maxTableHeight = isWideDisplay ? height - 130 : height - 150;
+  const timeSelectorHeight = isWideDisplay ? 0 : 48;
+  const modalChromeHeight = 70 + 16 + timeSelectorHeight;
+  const maxTableHeight = Math.max(160, (maxHeight ?? height) - modalChromeHeight);
 
   // eslint-disable-next-line react/no-unstable-nested-components
   const DayDurationRow = () => {
@@ -462,15 +473,18 @@ const ModalForecast: React.FC<ModalForecastProps> = ({
           }}
         />
       )}
-      {shouldHorizontalScroll ? (
-        <ScrollView style={[styles.table, { maxHeight: maxTableHeight }]}>
-          {modalContent}
-        </ScrollView>
-      ) : (
-        <View style={[styles.table, { maxHeight: maxTableHeight }]}>
-          {modalContent}
-        </View>
-      )}
+      <ScrollView
+        nestedScrollEnabled
+        onContentSizeChange={(_, contentHeight) => {
+          onScrollOffsetMaxChange?.(Math.max(0, contentHeight - maxTableHeight));
+        }}
+        onScroll={({ nativeEvent }) => {
+          onScrollOffsetChange?.(nativeEvent.contentOffset.y);
+        }}
+        scrollEventThrottle={16}
+        style={[styles.table, { maxHeight: maxTableHeight }]}>
+        {modalContent}
+      </ScrollView>
     </>
   );
 };
@@ -496,11 +510,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   bold: {
-    fontFamily: 'Roboto-Bold',
+    fontFamily: BOLD_FONT,
   },
   panelText: {
     fontSize: 14,
-    fontFamily: 'Roboto-Medium',
+    fontFamily: MEDIUM_FONT,
   },
   withMarginRight10: {
     marginRight: 10,

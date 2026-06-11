@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
-import { View, StyleSheet, Switch, useWindowDimensions } from 'react-native';
+import { View, ScrollView, StyleSheet, Switch, useWindowDimensions } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@react-navigation/native';
 
@@ -20,6 +20,7 @@ import {
 import { WHITE, CustomTheme } from '@assets/colors';
 import { trackMatomoEvent } from '@utils/matomo';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { REGULAR_FONT, BOLD_FONT } from '@assets/constants';
 
 const mapStateToProps = (state: State) => ({
   activeOverlay: selectActiveOverlay(state),
@@ -57,7 +58,7 @@ const MapLayersBottomSheet: React.FC<MapLayersBottomSheetProps> = ({
   const paddingTop = isWideDisplay() ? insets.top : 8;
 
   return (
-    <View
+    <ScrollView
       testID="map_layers_bottom_sheet"
       style={[styles.wrapper, { paddingLeft: insets.left, paddingRight: insets.right, paddingTop }]}
     >
@@ -85,7 +86,7 @@ const MapLayersBottomSheet: React.FC<MapLayersBottomSheetProps> = ({
             </View>
             <View
               style={[
-                styles.rowWrapper,
+                styles.withMarginBottom,
                 styles.withBorderBottom,
                 { borderBottomColor: colors.border },
               ]}>
@@ -137,7 +138,7 @@ const MapLayersBottomSheet: React.FC<MapLayersBottomSheetProps> = ({
             <SpeedSelector />
           </View>
 
-          <View style={{ width: columnWidth, marginLeft: columnMargin }}>
+          <View style={[styles.withMarginBottom, { width: columnWidth, marginLeft: columnMargin }]}>
             <View style={styles.sheetTitle}>
               <Text
                 maxFontSizeMultiplier={1.5}
@@ -150,7 +151,7 @@ const MapLayersBottomSheet: React.FC<MapLayersBottomSheetProps> = ({
           </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -167,7 +168,7 @@ const styles = StyleSheet.create({
   },
   closeButtonContainer: {
     position: 'absolute',
-    top: -16,
+    top: -10,
     right: 8,
   },
   sheetTitle: {
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
-  rowWrapper: {
+  withMarginBottom: {
     marginBottom: 14,
   },
   withBorderBottom: {
@@ -197,11 +198,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontFamily: 'Roboto-Bold',
+    fontFamily: BOLD_FONT,
   },
   text: {
     fontSize: 16,
-    fontFamily: 'Roboto-Regular',
+    fontFamily: REGULAR_FONT,
     flexShrink: 1,
   },
 });

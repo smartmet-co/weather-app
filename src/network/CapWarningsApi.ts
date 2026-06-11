@@ -44,14 +44,16 @@ const getCapWarnings = async () => {
   const { feed } = parser.parse(feedData);
   const entriesList = Array.isArray(feed.entry) ? feed.entry : [feed.entry];
 
-  const urls: string[] = entriesList.map((entry: { link: Array<{ '@_href': string; '@_type'?: string }> } | { link: { '@_href': string; '@_type'?: string } }) => {
+  const urls : [string] = entriesList.flatMap((entry: { link: [{ '@_href': string, '@_type': string | undefined }] }) => {
     if (Array.isArray(entry.link)) {
       // Meteoalarm feed may contain multiple links
       const links = entry.link.filter((link) => link['@_type'] && link['@_type'] === CAP_MIME_TYPE);
-      return links[0]['@_href'].replace('http://', 'https://');
-    } else {
+      return links[0]['@_href'];
+    } else if (entry.link['@_type'] && entry.link['@_type'] === CAP_MIME_TYPE) {
       // Smartmet feed contains only one link
-      return (entry.link['@_href'] as string).replace('http://', 'https://');
+      return entry.link['@_href'];
+    } else {
+      return [];
     }
   });
   const uniqueUrls = [...new Set(urls)];

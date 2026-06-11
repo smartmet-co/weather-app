@@ -10,12 +10,15 @@ import Icon from '@assets/Icon';
 
 import packageJSON from '../../package.json';
 import { trackMatomoEvent } from '@utils/matomo';
+import { WHITE, BLACK } from '@assets/colors';
+import { REGULAR_FONT, BOLD_FONT } from '@assets/constants';
 
 const FeedbackScreen: React.FC = () => {
   const { t, i18n } = useTranslation('feedback');
-  const { colors } = useTheme();
+  const { colors, dark } = useTheme();
 
   const feedback = Config.get('feedback');
+  const linkTextColor = dark ? WHITE : BLACK;
 
   const platformInfo = `(${
     Platform.OS === 'ios' ? Platform.constants.systemName : 'android'
@@ -24,6 +27,7 @@ const FeedbackScreen: React.FC = () => {
   const mailToUrl = `mailto:${feedback?.email || ''}?subject=${
     feedback?.subject[i18n.language] || ''
   } ${platformInfo}`;
+  const faqUrl = feedback?.faqUrl?.[i18n.language] || '';
 
   return (
     <View testID="feedback_view">
@@ -52,6 +56,43 @@ const FeedbackScreen: React.FC = () => {
           ]}>
           {t('body2')}
         </Text>
+
+        {!!faqUrl && (
+          <AccessibleTouchableOpacity
+            testID="feedback_faq_button"
+            accessibilityRole="link"
+            onPress={() => {
+              trackMatomoEvent('User action', 'Settings', 'Open URL - '+faqUrl);
+              Linking.openURL(faqUrl);
+            }}
+            accessibilityHint={t('openFAQHint')}>
+            <View
+              style={[
+                styles.link,
+                styles.withLargeMarginBottom,
+                { borderBottomColor: colors.primary }
+              ]}>
+              <Text
+                maxFontSizeMultiplier={1.5}
+                style={[
+                  styles.linkText,
+                  {
+                    color: linkTextColor
+                  },
+                ]}>
+                {t('openFAQ')}
+              </Text>
+                <Icon
+                  name="open-in-new"
+                  style={styles.withMarginLeft}
+                  color={linkTextColor}
+                  width={18}
+                  height={18}
+                  maxFontSizeMultiplier={1.5}
+                />
+            </View>
+          </AccessibleTouchableOpacity>
+        )}
 
         <AccessibleTouchableOpacity
           testID="feedback_button"
@@ -84,11 +125,23 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontFamily: 'Roboto-Bold',
+    fontFamily: BOLD_FONT,
   },
   text: {
     fontSize: 16,
-    fontFamily: 'Roboto-Regular',
+    fontFamily: REGULAR_FONT,
+  },
+  link: {
+    padding: 4,
+    borderBottomWidth: 2,
+    alignSelf: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  linkText: {
+    fontFamily: BOLD_FONT,
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   withMarginBottom: {
     marginBottom: 16,

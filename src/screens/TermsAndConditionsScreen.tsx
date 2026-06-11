@@ -18,18 +18,20 @@ import { MarkdownRenderer } from '@components/markdown/MarkdownRenderer';
 import { CustomTheme } from '@assets/colors';
 import { Config } from '@config';
 import { termsOfUseDocuments } from '@assets/markdown';
+import { REGULAR_FONT, MEDIUM_FONT, BOLD_FONT } from '@assets/constants';
 
 const renderer = new MarkdownRenderer();
 
 type TermsAndConditionsScreenProps = {
-  showCloseButton?: boolean;
-  onClose?: () => void;
+  showActions?: boolean;
+  onAccept?: () => void;
 };
 
 const TermsAndConditionsScreen: React.FC<TermsAndConditionsScreenProps> = ({
-  showCloseButton,
-  onClose,
+  showActions,
+  onAccept,
 }) => {
+  const [errorMessage, setErrorMessage] = React.useState<string>('');
   const { t, i18n } = useTranslation('termsAndConditions');
   const { colors } = useTheme() as CustomTheme;
   const titleRef = useRef<RNText>(null);
@@ -40,6 +42,8 @@ const TermsAndConditionsScreen: React.FC<TermsAndConditionsScreenProps> = ({
 
   renderer.setHeadingColor(colors.text);
   renderer.setTextColor(colors.primaryText);
+
+  const errorColor = 'red';
 
   useFocusEffect(() => {
     if (titleRef && titleRef.current) {
@@ -139,26 +143,46 @@ const TermsAndConditionsScreen: React.FC<TermsAndConditionsScreenProps> = ({
           </ScrollView>
         )
       }
-      {showCloseButton && (
+      {showActions && (
         <View
           style={[
-            styles.closeButtonContainer,
+            styles.bottomContainer,
             {
               shadowColor: colors.shadow,
               backgroundColor: colors.background,
             },
           ]}>
-          <AccessibleTouchableOpacity
-            testID="terms_close_button"
-            onPress={onClose}
-            accessibilityRole="button"
-            accessibilityHint={t('closeButtonAccessibilityHint')}>
-            <View style={[styles.closeButton, { borderColor: colors.text, marginBottom: closeButtonMarginBottom }]}>
-              <Text style={[styles.closeText, { color: colors.text }]}>
-                {t('close')}
-              </Text>
-            </View>
-          </AccessibleTouchableOpacity>
+          { errorMessage !== '' && (
+            <Text style={[styles.error, { color: errorColor }]}>
+              {t(errorMessage)}
+            </Text>
+          )}
+          <View style={styles.buttonContainer}>
+            <AccessibleTouchableOpacity
+              testID="terms_accept_button"
+              onPress={onAccept}
+              accessibilityRole="button"
+              accessibilityHint={t('acceptButtonAccessibilityHint')}>
+              <View style={[styles.button, { borderColor: colors.text, marginBottom: closeButtonMarginBottom }]}>
+                <Text style={[styles.buttonText, { color: colors.text }]}>
+                  {t('accept')}
+                </Text>
+              </View>
+            </AccessibleTouchableOpacity>
+            <AccessibleTouchableOpacity
+              testID="terms_close_button"
+              onPress={() => {
+                setErrorMessage('acceptTermsError');
+              }}
+              accessibilityRole="button"
+              accessibilityHint={t('declineButtonAccessibilityHint')}>
+              <View style={[styles.button, { borderColor: colors.text, marginBottom: closeButtonMarginBottom }]}>
+                <Text style={[styles.buttonText, { color: colors.text }]}>
+                  {t('decline')}
+                </Text>
+              </View>
+            </AccessibleTouchableOpacity>
+          </View>
         </View>
       )}
     </View>
@@ -175,15 +199,16 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontFamily: 'Roboto-Bold',
+    fontFamily: BOLD_FONT,
+    fontWeight: 'bold',
     marginTop: 32,
     marginBottom: 16,
   },
   body: {
     fontSize: 16,
-    fontFamily: 'Roboto-Regular',
+    fontFamily: REGULAR_FONT,
   },
-  closeButtonContainer: {
+  bottomContainer: {
     width: '100%',
     shadowOffset: {
       width: 0,
@@ -193,9 +218,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     elevation: 11,
     alignItems: 'center',
-    paddingVertical: 16,
+    paddingTop: 16,
   },
-  closeButton: {
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 16,
+  },
+  button: {
     width: 120,
     height: 44,
     borderRadius: 24,
@@ -203,9 +233,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  closeText: {
+  buttonText: {
     fontSize: 16,
-    fontFamily: 'Roboto-Medium',
+    fontFamily: MEDIUM_FONT,
   },
   withPaddingBottom: {
     paddingBottom: 24,
@@ -214,6 +244,14 @@ const styles = StyleSheet.create({
     padding: 16,
     flexShrink: 1,
   },
+  error: {
+    width: '100%',
+    textAlign: 'center',
+    fontSize: 16,
+    fontFamily: MEDIUM_FONT,
+    paddingHorizontal: 16,
+    paddingBottom: 8,
+  }
 });
 
 export default TermsAndConditionsScreen;

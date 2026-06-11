@@ -43,6 +43,7 @@ import Latest from './observation/Latest';
 import ObservationStationListBottomSheet from './sheets/ObservationStationListBottomSheet';
 import { observationTypeParameters } from './charts/settings';
 import { trackMatomoEvent } from '@utils/matomo';
+import { REGULAR_FONT, BOLD_FONT } from '@assets/constants';
 
 const mapStateToProps = (state: State) => ({
   data: selectData(state),
@@ -176,7 +177,7 @@ const ObservationPanel: React.FC<ObservationPanelProps> = ({
 
   return (
     <View
-      style={layout === 'fmi' ? [ styles.extraPadding, {
+      style={layout === 'vertical' ? [ styles.extraPadding, {
         marginLeft: insets.left,
         marginRight: insets.right,
       }] : [
@@ -186,7 +187,7 @@ const ObservationPanel: React.FC<ObservationPanelProps> = ({
           shadowColor: colors.shadow,
         }
       ]}>
-      <PanelHeader title={t('panelHeader')} thin={layout === 'fmi'} />
+      <PanelHeader title={t('panelHeader')} thin={layout === 'vertical'} />
       <View style={styles.panelContainer}>
         {loading && <ActivityIndicator />}
         {stationList.length > 0 && (
@@ -205,7 +206,7 @@ const ObservationPanel: React.FC<ObservationPanelProps> = ({
                 title={title}
                 accessibilityLabel=""
                 iconStart="map-marker"
-                rounded={layout === 'fmi'}
+                rounded={layout === 'vertical'}
               />
             </View>
           </View>
@@ -380,7 +381,7 @@ const styles = StyleSheet.create({
   },
   observationText: {
     fontSize: 14,
-    fontFamily: 'Roboto-Regular',
+    fontFamily: REGULAR_FONT,
   },
   panelContainer: {
     paddingVertical: 12,
@@ -388,7 +389,7 @@ const styles = StyleSheet.create({
   },
   panelText: {
     fontSize: 14,
-    fontFamily: 'Roboto-Regular',
+    fontFamily: REGULAR_FONT,
     paddingBottom: 2,
   },
   panelWrapper: {
@@ -407,7 +408,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   selectedText: {
-    fontFamily: 'Roboto-Bold',
+    fontFamily: BOLD_FONT,
   },
   sheetContainer: {
     borderTopLeftRadius: 10,

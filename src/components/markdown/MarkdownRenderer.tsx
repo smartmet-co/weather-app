@@ -9,6 +9,7 @@ import TemperatureLegend from './TemperatureLegend';
 import type { AnalyticActions } from '@config';
 import AccessibleTouchableOpacity from '@components/common/AccessibleTouchableOpacity';
 import packageJSON from '../../../package.json';
+import { REGULAR_FONT, BOLD_FONT } from '@assets/constants';
 
 const HEX_RE = /^#[0-9a-fA-F]{6}$/;
 const ICON_TOKEN_RE = /\[icon:([a-z0-9-]+)(?:\|(\d+)(?:\|(\d+))?)?\]/g;
@@ -21,13 +22,12 @@ type ParsedTrackedLink = {
   action?: string;
 };
 
-function parseColors(raw: string): string[] {
-  return raw
+const parseColors = (raw: string): string[] =>
+  raw
     .replace(/^(?:radar-legend|legend):/, '')
     .split(',')
     .map((s) => s.trim())
     .filter((c) => HEX_RE.test(c));
-}
 
 const parseLabels = (raw: string) => {
   const normalized = raw.replace(/^\//, ''); // remove leading "/" added by markdown link normalization
@@ -397,12 +397,12 @@ export class MarkdownRenderer extends Renderer implements RendererInterface {
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: 'Roboto-Regular',
+    fontFamily: REGULAR_FONT,
     fontSize: 15,
     lineHeight: 20
   },
   heading: {
-    fontFamily: 'Roboto-Bold',
+    fontFamily: BOLD_FONT,
     marginVertical: 8,
   },
   legendRoot: {
@@ -453,7 +453,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   linkText: {
-    fontFamily: 'Roboto-Bold',
+    fontFamily: BOLD_FONT,
     fontWeight: 'bold',
     fontSize: 16,
   },

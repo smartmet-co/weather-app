@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ImageBackground,
   Image,
@@ -10,6 +10,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import Permissions, { PERMISSIONS } from 'react-native-permissions';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@react-navigation/native';
+import type { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import Text from '@components/common/AppText';
@@ -20,22 +21,24 @@ import { useOrientation } from '@utils/hooks';
 import { Config } from '@config';
 import { providerLogos } from '@assets/images';
 import type { SetupStackParamList } from '@navigators/stacks/types';
+import { REGULAR_FONT, MEDIUM_FONT, BOLD_FONT } from '@assets/constants';
 
 type SetupScreenProps = {
   setUpDone: () => void;
   navigation: StackNavigationProp<SetupStackParamList, 'SetupScreen'>;
+  route: RouteProp<SetupStackParamList, 'SetupScreen'>;
   termsOfUseChanged: boolean;
 };
 
 const SetupScreen: React.FC<SetupScreenProps> = ({
   navigation,
+  route,
   setUpDone,
-  termsOfUseChanged
+  termsOfUseChanged,
 }) => {
   const { languageSpecificLogo, backgroundImageProperties } = Config.get('onboardingWizard');
   const { t, i18n } = useTranslation('setUp');
   const { colors, dark } = useTheme() as CustomTheme;
-  const [didViewTerms, setDidViewTerms] = useState<boolean>(false);
   const [pageIndex, setPageIndex] = useState<number>(0);
   const isLandscape = useOrientation();
   const insets = useSafeAreaInsets();
@@ -56,13 +59,13 @@ const SetupScreen: React.FC<SetupScreenProps> = ({
       .catch((e) => console.error(e));
   };
 
-  const acceptTermsOfUse = () => {
-    if (termsOfUseChanged) {
-      setUpDone()
-    } else {
+  useEffect(() => {
+    if (route.params?.acceptedTerms === true && termsOfUseChanged) {
+      setUpDone();
+    } else if (route.params?.acceptedTerms === true) {
       setPageIndex(1);
     }
-  };
+  }, [route.params?.acceptedTerms, setUpDone, termsOfUseChanged]);
 
   const PermissionComponent: React.FC<{
     title: string;
@@ -240,16 +243,12 @@ const SetupScreen: React.FC<SetupScreenProps> = ({
           <PermissionComponent
             title={ termsOfUseChanged ? t('termsAndConditionsChanged') : t('termsAndConditions')}
             description={t('termsAndConditionsDescription')}
-            primaryButtonText={t('accept')}
-            secondaryButtonText={t('termsAndConditions')}
-            onPrimaryButtonPress={acceptTermsOfUse}
-            onSecondaryButtonPress={() => {
-              if (!didViewTerms) setDidViewTerms(true);
+            primaryButtonText={t('readTermsAndConditions')}
+            onPrimaryButtonPress={() => {
               navigation.navigate('TermsAndConditions');
             }}
-            primaryButtonDisabled={!didViewTerms}
+            primaryButtonDisabled={false}
             primaryButtonTestID="setup_primary_button"
-            secondaryButtonTestID="setup_secondary_button"
           />
         )}
         {pageIndex === 1 && (
@@ -339,17 +338,19 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 30,
     alignSelf: 'center',
-    fontFamily: 'Roboto-Bold',
+    fontFamily: BOLD_FONT,
+    fontWeight: 'bold',
   },
   textNormal: {
     fontSize: 16,
     textAlign: 'center',
     marginBottom: 20,
-    fontFamily: 'Roboto-Regular',
+    fontFamily: REGULAR_FONT,
   },
   textHighlight: {
     fontSize: 16,
-    fontFamily: 'Roboto-Bold',
+    fontFamily: BOLD_FONT,
+    fontWeight: 'bold',
   },
   secondaryButton: {
     borderBottomWidth: 2,
@@ -366,7 +367,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    fontFamily: 'Roboto-Medium',
+    fontFamily: MEDIUM_FONT,
     textAlign: 'center',
   },
   pagination: {

@@ -15,6 +15,8 @@ import {
   ScrollView,
   ActivityIndicator,
   Platform,
+  AppState,
+  AppStateStatus,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import moment from 'moment';
@@ -53,6 +55,7 @@ import { selectClockType } from '@store/settings/selectors';
 import SliderStep from './SliderStep';
 import { trackMatomoEvent } from '@utils/matomo';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { BOLD_FONT } from '@assets/constants';
 
 const QUARTER_WIDTH = 15;
 const STEP_60 = 3600;
@@ -93,6 +96,7 @@ const TimeSlider: React.FC<TimeSliderProps> = ({
   const { width } = useWindowDimensions();
   const [sliderWidth, setSliderWidth] = useState<number>(width - 24);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const prevCurrentIndexRef = useRef<number>(-1);
 
   const multiplier = Math.round(width / 400);
 
@@ -139,6 +143,14 @@ const TimeSlider: React.FC<TimeSliderProps> = ({
 
   const isFocused = useIsFocused();
 
+  const clear = useCallback(() => {
+    setIsAnimating(false);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }, []);
+
   /**
    * clear animation if:
    *  user navigates off screen
@@ -148,16 +160,37 @@ const TimeSlider: React.FC<TimeSliderProps> = ({
     if ((!isFocused || sliderTime === 0) && isAnimating) {
       clear();
     }
-  }, [isFocused, isAnimating, sliderTime]);
+  }, [isFocused, isAnimating, sliderTime, clear]);
+
+  // Sets animation to pause when app goes to background or becomes inactive
+  useEffect(() => {
+    const handleAppStateChange = (nextAppState: AppStateStatus) => {
+      if (nextAppState.match(/inactive|background/)) {
+        clear();
+      }
+    };
+
+    const subscription = AppState.addEventListener(
+      'change',
+      handleAppStateChange
+    );
+
+    return () => {
+      subscription.remove();
+    };
+  }, [clear]);
 
   useEffect(() => {
     if (currentIndex >= 0) {
-      if (!isAnimating) {
+      // Only trigger haptics on actual slider movement, not when sliderTimes
+      // changes underneath (e.g. data refresh after navigating away and back).
+      if (!isAnimating && prevCurrentIndexRef.current !== currentIndex) {
         ReactNativeHapticFeedback.trigger(
           Platform.OS === 'ios' ? 'selection' : 'impactMedium'
         );
       }
       updateSliderTime(sliderTimes[currentIndex] || 0);
+      prevCurrentIndexRef.current = currentIndex;
     }
   }, [currentIndex, sliderTimes, updateSliderTime, isAnimating]);
 
@@ -245,14 +278,6 @@ const TimeSlider: React.FC<TimeSliderProps> = ({
     };
   }, [isAnimating, animationSpeed, stepWidth]);
 
-  const clear = () => {
-    setIsAnimating(false);
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-  };
-
   return (
     <View
       style={[
@@ -337,7 +362,11 @@ const TimeSlider: React.FC<TimeSliderProps> = ({
             </ScrollView>
           )}
           {sliderTime === 0 && (
-            <ActivityIndicator size="small" style={styles.sliderWrapper} />
+            <ActivityIndicator
+              size="small"
+              style={styles.sliderWrapper}
+              pointerEvents="none"
+            />
           )}
           {sliderTime > 0 && (
             <>
@@ -412,7 +441,7 @@ const TimeSlider: React.FC<TimeSliderProps> = ({
 const styles = StyleSheet.create({
   wrapper: {
     position: 'absolute',
-    bottom: 8,
+    bottom: 38,
     right: 12,
     left: 12,
     minHeight: 75,
@@ -432,7 +461,7 @@ const styles = StyleSheet.create({
   },
   currentTimeText: {
     fontSize: 14,
-    fontFamily: 'Roboto-Bold',
+    fontFamily: BOLD_FONT,
     position: 'absolute',
     bottom: 0,
     zIndex: 5,
