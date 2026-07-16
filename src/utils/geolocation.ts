@@ -21,7 +21,7 @@ const countryByCode = (countries as Country[]).reduce<Record<string, Country>>(
   {}
 );
 
-const getCountryName = (countryCode: string, language: string) => {
+export const getCountryName = (countryCode: string, language: string) => {
   const country = countryByCode[countryCode];
 
   return country?.name[language] || country?.name.primary || countryCode;

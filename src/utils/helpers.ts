@@ -22,7 +22,7 @@ import { Rain } from '../assets/colors';
 import { converter, toPrecision, UNITS } from './units';
 import { UnitMap } from '@store/settings/types';
 import { trackMatomoEvent } from './matomo';
-import { findNearestLocation } from './geolocation';
+import { findNearestLocation, getCountryName } from './geolocation';
 import i18n from '@i18n';
 
 const getPosition = (
@@ -40,26 +40,28 @@ const getPosition = (
       if (source === 'json') {
         const location = findNearestLocation(latitude, longitude, maxDistance ?? 10);
         const name = location?.name[i18n.language] || location?.name.primary || `${latitude}, ${longitude}`;
-        const region = location?.region[i18n.language] || location?.region.primary || '';
+        let region = '';
 
-        AccessibilityInfo.announceForAccessibility(
-          region
-            ? `${t('navigation:locatedTo')} ${name}, ${region}`
-            : `${t('navigation:locatedTo')} ${name}`
-        );
+        if (location) {
+          region = location.country === 'CO' ? location.region[i18n.language] || location.region.primary
+                    : getCountryName(location.country, i18n.language);
+        }
 
-        callback(
-          {
-            id: location?.id || 0,
-            lat: latitude,
-            lon: longitude,
-            name,
-            area: region,
-            timezone: location?.timezone || '',
-            country: location?.country || '',
-          },
-          true
-        );
+         AccessibilityInfo.announceForAccessibility(
+           region
+             ? `${t('navigation:locatedTo')} ${name}, ${region}`
+             : `${t('navigation:locatedTo')} ${name}`
+         );
+
+        callback({
+          id: location?.id || 0,
+          lat: latitude,
+          lon: longitude,
+          name: name,
+          area: region,
+          timezone: location?.timezone || '',
+          country: location?.country || '',
+        }, true);
       } else {
         getCurrentPosition(latitude, longitude)
           .then((json) => {

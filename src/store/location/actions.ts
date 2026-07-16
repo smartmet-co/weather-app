@@ -20,6 +20,7 @@ import {
   UPDATE_LOCATIONS_LOCALES,
   SET_LOADING,
 } from './types';
+import { uppercaseFirst } from '@utils/helpers';
 
 export const setCurrentLocation =
   (location: Location, isGeolocation?: boolean) =>
@@ -59,7 +60,8 @@ export const searchLocation =
             result: results.map((location) => ({
               id: location.id,
               name: location.name[language] || location.name.primary,
-              area: location.region[language] || location.region.primary,
+              area: location.country === 'CO' ?
+                location.region[language] || location.region.primary : uppercaseFirst(location.countryName),
               country: location.country,
               lat: location.latitude,
               lon: location.longitude,
