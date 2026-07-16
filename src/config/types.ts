@@ -131,6 +131,9 @@ interface CapViewSettings {
   severityBackgroundInSymbol?: boolean;
   hideLongArealist?: boolean;
   useRelativeDays?: boolean;
+  sortAreas?: boolean;
+  removeDuplicateAreas?: boolean;
+  polygonAccuracy?: number; // in meters, if not set original polygon is used
 }
 
 interface Warnings {
@@ -265,6 +268,24 @@ interface MarkdownSettings {
   accessibility: boolean;
 }
 
+interface DateTimeFormats {
+  date: string;
+  longDate: string;
+  dateYear: string;
+  dateTime: string;
+  longDateTime: string;
+  time: string;
+  weekdayAbbreviation: string;
+  weekday: string;
+  weekdayAndDate: string;
+  weekdayAbbreviationAndDate: string;
+}
+
+interface DateTimeSettings {
+  default: DateTimeFormats;
+  locales?: Record<string, Partial<DateTimeFormats>>;
+}
+
 // TODO: how to handle errors. Add error categories to "actions" and then name -field can be error message content
 // for example: trackMatomoEvent('Error', 'Error loading forecast data', error.getMessage())
 // Events in Matomo have three dimension (category, action, name)
@@ -278,6 +299,7 @@ export type AnalyticActions = 'Weather' | 'Map' | 'Warnings' | 'Other' | 'Search
 export interface ConfigType {
   dynamicConfig: DynamicConfigEnabled | DynamicConfigDisabled;
   location: {
+    source: 'smartmet' | 'json';
     default: Location;
     apiUrl: string;
     keyword: string;
@@ -333,6 +355,7 @@ export interface ConfigType {
     showUnitSettings?: boolean;
     excludeUnits?: MeasurementUnit[];
     clockType: 12 | 24;
+    dateTime: DateTimeSettings;
     themes: Themes;
     verboseErrorMessages?: boolean;
     markdown?: MarkdownSettings;

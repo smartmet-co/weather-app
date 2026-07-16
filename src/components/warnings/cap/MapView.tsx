@@ -15,6 +15,7 @@ import {
   GRAY_8,
 } from '@assets/colors';
 import darkMapStyle from '@utils/dark_map_style.json';
+import { parseCapPolygon } from '@utils/capPolygon';
 import { getSeveritiesForDays } from '@utils/helpers';
 import DaySelectorList from './DaySelectorList';
 import WarningTypeFiltersList from './WarningTypeFiltersList';
@@ -106,37 +107,26 @@ const MapView: React.FC<MapViewProps> = ({
   const mapRef = useRef<Map>(null);
   const { colors, dark } = useTheme() as CustomTheme;
   const capViewSettings = Config.get('warnings')?.capViewSettings;
+  const polygonAccuracy = capViewSettings?.polygonAccuracy;
 
   const darkGoogleMapsStyle =
     dark && Platform.OS === 'android' ? darkMapStyle : [];
 
   const parsedCapData = useMemo(() => {
-    return capData
+    return applicableWarnings
       ?.map((warning) => {
         const info = Array.isArray(warning.info) ? warning.info[0] : warning.info;
         return {
-          identifier: warning.identifier,
           event: info.event,
           severity: info?.severity,
           polygons: [info.area.polygon]
             .flat()
             .filter(Boolean)
-            .map((polygon) => polygon
-              ?.split(' ')
-              .map((coordinates) => {
-                const parts = coordinates.split(',').map(Number);
-                return [parts[1], parts[0]]; // GeoJSON vaatii [longitude, latitude] -järjestyksen
-              })
-            ),
+            .map((polygon) => parseCapPolygon(polygon, polygonAccuracy)),
         };
       })
       || [];
-  }, [capData]);
-
-  const activeWarningIds = useMemo(
-    () => new Set(applicableWarnings?.map((w) => w.identifier) || []),
-    [applicableWarnings]
-  );
+  }, [applicableWarnings, polygonAccuracy]);
 
   const geojsonCollections = useMemo(() => {
     const collections: Record<string, any> = {
@@ -145,14 +135,13 @@ const MapView: React.FC<MapViewProps> = ({
       Extreme: { type: 'FeatureCollection', features: [] },
     };
 
-    parsedCapData.forEach(({ identifier, event, severity, polygons }) => {
+    parsedCapData.forEach(({ event, severity, polygons }) => {
       const isHidden =
-        !activeWarningIds.has(identifier) ||
         !!selectedFilters.find(
           (filter) => filter.event === event && filter.severity === severity
         );
 
-      // Jätetään piilotetut kokonaan pois GeoJSON:ista
+      // Exclude hidden warnings from GeoJSON
       if (isHidden || !severity || !SEVERITIES.includes(severity as Severity)) return;
 
       polygons.forEach((coords) => {
@@ -161,7 +150,7 @@ const MapView: React.FC<MapViewProps> = ({
             type: 'Feature',
             geometry: {
               type: 'Polygon',
-              coordinates: [coords], // GeoJSON Polygonia varten taulukon sisällä
+              coordinates: [coords], // GeoJSON polygon coordinates require an array of rings
             },
             properties: {},
           });
@@ -170,7 +159,7 @@ const MapView: React.FC<MapViewProps> = ({
     });
 
     return collections;
-  }, [parsedCapData, activeWarningIds, selectedFilters]);
+  }, [parsedCapData, selectedFilters]);
 
   const handleWarningTypePress = (warning: CapWarning) => {
     const info = Array.isArray(warning.info) ? warning.info[0] : warning.info;
