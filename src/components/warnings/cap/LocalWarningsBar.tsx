@@ -122,8 +122,6 @@ const LocalWarningsBar: React.FC<LocalWarningsBarProps> = ({
   const colorMode = dark ? 'dark' : 'light';
 
   const locale = i18n.language;
-  const weekdayAbbreviationFormat = locale === 'en' ? 'ddd' : 'dd';
-  const dateFormat = locale === 'en' ? 'MMM D' : 'D.M.';
   moment.locale(locale);
 
   const preparedWarnings = useMemo(
@@ -315,7 +313,7 @@ const LocalWarningsBar: React.FC<LocalWarningsBarProps> = ({
                         styles.dayWarningHeaderText,
                         { color: colors.primaryText },
                       ]}>
-                      {moment(date).format(weekdayAbbreviationFormat)}
+                      {moment(date).formatDateTime('weekdayAbbreviation', locale)}
                     </Text>
                     <Text
                       maxFontSizeMultiplier={1.5}
@@ -325,7 +323,7 @@ const LocalWarningsBar: React.FC<LocalWarningsBarProps> = ({
                         styles.dayWarningHeaderText,
                         { color: colors.primaryText },
                       ]}>
-                      {moment(date).format(dateFormat)}
+                      {moment(date).formatDateTime('date', locale)}
                     </Text>
                     <View style={styles.severityBarWrapper}>
                       <CapSeverityBar severities={severities} />

@@ -7,6 +7,7 @@ const defaultConfig: ConfigType = {
     interval: 1,
   },
   location: {
+    source: 'smartmet',
     default: {
       name: 'Helsinki',
       area: 'Suomi',
@@ -111,6 +112,29 @@ const defaultConfig: ConfigType = {
     themes: {
       light: true,
       dark: true,
+    },
+    dateTime: {
+      default: {
+        date: 'D.M.',
+        dateYear: 'D.M.YYYY',
+        longDate: 'Udddd, D.M.',
+        time: 'HH:mm',
+        dateTime: 'D.M. HH:mm',
+        longDateTime: 'D.M.YYYY HH:mm',
+        weekdayAbbreviation: 'Udd',
+        weekday: 'Udddd',
+        weekdayAndDate: 'dddd D.M.',
+        weekdayAbbreviationAndDate: 'Udd D.M.',
+      },
+      locales: {
+        en: {
+          date: 'D MMM',
+          dateTime: 'D MMM HH:mm',
+          weekdayAbbreviation: 'Uddd',
+          weekdayAndDate: 'Udddd D MMM',
+          weekdayAbbreviationAndDate: 'Uddd D MMM',
+        },
+      }
     },
   },
   announcements: {
