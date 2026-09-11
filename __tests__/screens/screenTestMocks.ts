@@ -598,3 +598,8 @@ jest.mock('@components/weather/MeteorologistSnapshot', () => ({
     );
   },
 }));
+
+jest.mock('@components/weather/EnosLinkPanel', () => ({
+  __esModule: true,
+  default: mockTextComponent('enos-link-panel'),
+}));

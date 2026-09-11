@@ -298,6 +298,18 @@ const Navigator: React.FC<Props> = ({
     [CommonHeaderOptions, t, useDarkTheme]
   );
 
+  const enosLinkScreenOptions = useMemo(
+    () => ({
+      ...CommonHeaderOptions,
+      headerBackTitleVisible: false,
+      // eslint-disable-next-line react/no-unstable-nested-components
+      headerTitle: () => (
+        <HeaderTitle title={t('navigation:enosLink')} isDark={useDarkTheme} />
+      ),
+    }),
+    [CommonHeaderOptions, t, useDarkTheme]
+  );
+
   /** Navigates back to initial route on blur */
   const stackScreenListener = useMemo(
     () =>
@@ -448,6 +460,7 @@ const Navigator: React.FC<Props> = ({
               <WeatherStackScreen
                 weatherOptions={weatherScreenOptions}
                 searchOptions={SearchScreenOptions}
+                enosLinkOptions={enosLinkScreenOptions}
                 stackScreenListener={stackScreenListener}
               />
             )}

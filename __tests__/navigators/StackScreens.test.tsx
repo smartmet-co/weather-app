@@ -90,6 +90,7 @@ jest.mock('@components/common/HeaderTitle', () => ({
 jest.mock('@screens/MapScreen', () => 'MapScreen');
 jest.mock('@screens/SearchScreen', () => 'SearchScreen');
 jest.mock('@screens/WeatherScreen', () => 'WeatherScreen');
+jest.mock('@screens/EnosLinkScreen', () => 'EnosLinkScreen');
 jest.mock('@screens/WarningsScreen', () => 'WarningsScreen');
 jest.mock('@screens/OthersScreen', () => 'OthersScreen');
 jest.mock('@screens/AboutScreen', () => 'AboutScreen');
@@ -146,6 +147,7 @@ describe('navigator stack screens', () => {
         <WeatherStackScreen
           weatherOptions={{ title: 'weather' } as any}
           searchOptions={{ title: 'search' } as any}
+          enosLinkOptions={{ title: 'enos' } as any}
           stackScreenListener={jest.fn() as any}
         />
         <WarningsStackScreen
@@ -158,6 +160,9 @@ describe('navigator stack screens', () => {
 
     expect(mockStackScreens).toHaveBeenCalledWith(
       expect.objectContaining({ name: 'StackWeather' })
+    );
+    expect(mockStackScreens).toHaveBeenCalledWith(
+      expect.objectContaining({ name: 'EnosLink', options: { title: 'enos' } })
     );
     expect(mockStackScreens).toHaveBeenCalledWith(
       expect.objectContaining({

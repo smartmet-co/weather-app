@@ -3,11 +3,13 @@ import { createStackNavigator, type StackNavigationOptions } from '@react-naviga
 
 import WeatherScreen from '@screens/WeatherScreen';
 import SearchScreen from '@screens/SearchScreen';
+import EnosLinkScreen from '@screens/EnosLinkScreen';
 import type { StackScreenListener } from './types';
 
 type WeatherStackScreenProps = {
   weatherOptions: StackNavigationOptions;
   searchOptions: StackNavigationOptions;
+  enosLinkOptions: StackNavigationOptions;
   stackScreenListener: StackScreenListener;
 };
 
@@ -16,6 +18,7 @@ const WeatherStack = createStackNavigator();
 const WeatherStackScreen: React.FC<WeatherStackScreenProps> = ({
   weatherOptions,
   searchOptions,
+  enosLinkOptions,
   stackScreenListener,
 }) => (
   <WeatherStack.Navigator>
@@ -28,6 +31,12 @@ const WeatherStackScreen: React.FC<WeatherStackScreenProps> = ({
       name="Search"
       component={SearchScreen}
       options={searchOptions}
+      listeners={stackScreenListener}
+    />
+    <WeatherStack.Screen
+      name="EnosLink"
+      component={EnosLinkScreen}
+      options={enosLinkOptions}
       listeners={stackScreenListener}
     />
   </WeatherStack.Navigator>

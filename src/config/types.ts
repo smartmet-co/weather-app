@@ -252,6 +252,10 @@ interface MeteorologistSnapshotConfig {
   updateInterval: number;
 }
 
+interface EnosLinkPanelConfig {
+  url: string;
+}
+
 interface Analytics {
   enabled: boolean;
   siteId?: Record<string, number>; // string is language. "fi" for example
@@ -339,6 +343,7 @@ export interface ConfigType {
     };
     observation: ObservationEnabled | ObservationDisabled;
     meteorologist?: MeteorologistSnapshotConfig;
+    enosLinkPanel?: EnosLinkPanelConfig;
     useCardinalsForWindDirection?: boolean;
   };
   warnings: WarningsEnabled | WarningsDisabled;
