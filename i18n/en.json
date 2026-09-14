@@ -54,8 +54,8 @@
     "parameter": "Parameter",
     "loading": "Loading content",
     "enosLinkPanel": {
-      "title": "",
-      "description": "",
+      "title": "Everything about ENOS, all in one place",
+      "buttonText": "Check the official information here",
       "accessibilityHint": "Opens the El Niño microsite"
     }
   },

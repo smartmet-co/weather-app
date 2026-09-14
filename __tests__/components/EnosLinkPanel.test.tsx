@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { fireEvent, render } from '@testing-library/react-native';
 
 import EnosLinkPanel from '../../src/components/weather/EnosLinkPanel';
@@ -26,11 +27,11 @@ describe('EnosLinkPanel', () => {
     mockTrackMatomoEvent.mockReset();
   });
 
-  it('renders the localized title and description', () => {
+  it('renders the localized title and button text', () => {
     const { getByText } = render(<EnosLinkPanel />);
 
     expect(getByText('enosLinkPanel.title')).toBeTruthy();
-    expect(getByText('enosLinkPanel.description')).toBeTruthy();
+    expect(getByText('enosLinkPanel.buttonText')).toBeTruthy();
   });
 
   it('navigates to the EnosLink screen and tracks the event on press', () => {
@@ -51,5 +52,14 @@ describe('EnosLinkPanel', () => {
     const view = render(<EnosLinkPanel image={customImage} />);
 
     expect(view.UNSAFE_getByProps({ source: customImage })).toBeTruthy();
+  });
+
+  it('sizes the card by aspect ratio instead of a fixed height, so it scales on rotation', () => {
+    const { getByTestId } = render(<EnosLinkPanel />);
+
+    const wrapper = StyleSheet.flatten(getByTestId('enos_link_panel').props.style);
+
+    expect(wrapper.aspectRatio).toBeCloseTo(16 / 9);
+    expect(wrapper.height).toBeUndefined();
   });
 });
