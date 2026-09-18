@@ -52,7 +52,12 @@
       "rrday": "Precipitation"
     },
     "parameter": "Parameter",
-    "loading": "Loading content"
+    "loading": "Loading content",
+    "enosLinkPanel": {
+      "title": "Everything about ENOS,\nAll in one place",
+      "buttonText": "Check the official information here",
+      "accessibilityHint": "Opens the El Niño microsite"
+    }
   },
   "forecast": {
     "nextHourForecast": "Forecast",
@@ -317,7 +322,8 @@
     "slash": "of",
     "locatedTo": "Located to:",
     "navigateTo": "Navigate to:",
-    "open": "Open"
+    "open": "Open",
+    "enosLink": "Enos"
   },
   "about": {
     "versionInfo": "Application version",

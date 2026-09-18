@@ -135,7 +135,7 @@ describe('MarkdownRenderer', () => {
     fireEvent.press(getByA11yRole('link'));
 
     expect(openURLSpy).toHaveBeenCalledWith(
-      expect.stringContaining('v1.0.') // Full version is something like v1.0.2
+      expect.stringContaining('v1.1.0') // Full version is something like v1.0.2
     );
 
     openURLSpy.mockRestore();

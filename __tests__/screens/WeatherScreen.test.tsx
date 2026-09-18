@@ -56,6 +56,52 @@ describe('WeatherScreen', () => {
     expect(fetchNews).toHaveBeenCalledWith('fi');
   });
 
+  it('renders the ENOS link panel when weather.enosLinkPanel.url is configured', () => {
+    mockConfigGetAll.mockReturnValue({
+      news: { enabled: false },
+      warnings: { apiUrl: {}, enabled: false },
+      weather: {
+        forecast: {},
+        layout: 'vertical',
+        meteorologist: {},
+        observation: { enabled: false },
+        enosLinkPanel: { url: 'https://enos.example.test' },
+      },
+    });
+
+    const { getByTestId } = render(
+      <WeatherScreen
+        announcements={undefined as any}
+        fetchForecast={jest.fn()}
+        fetchMeteorologistSnapshot={jest.fn()}
+        fetchNews={jest.fn()}
+        fetchObservation={jest.fn()}
+        fetchWarnings={jest.fn()}
+        location={{ country: 'CO', id: 1, lat: 4.6, lon: -74.1 } as any}
+        resetObservations={jest.fn()}
+      />
+    );
+
+    expect(getByTestId('enos-link-panel')).toBeTruthy();
+  });
+
+  it('does not render the ENOS link panel when not configured', () => {
+    const { queryByTestId } = render(
+      <WeatherScreen
+        announcements={undefined as any}
+        fetchForecast={jest.fn()}
+        fetchMeteorologistSnapshot={jest.fn()}
+        fetchNews={jest.fn()}
+        fetchObservation={jest.fn()}
+        fetchWarnings={jest.fn()}
+        location={{ country: 'FI', id: 1, lat: 60.1, lon: 24.9 } as any}
+        resetObservations={jest.fn()}
+      />
+    );
+
+    expect(queryByTestId('enos-link-panel')).toBeNull();
+  });
+
   it('renders legacy layout inside GradientWrapper', () => {
     mockConfigGetAll.mockReturnValue({
       news: { enabled: false },
