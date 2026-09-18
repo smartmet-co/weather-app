@@ -22,6 +22,7 @@ export type WeatherStackParamList = {
   Weather: Location;
   Search: undefined;
   Warnings: undefined;
+  EnosLink: undefined;
 };
 
 export type SetupStackParamList = {

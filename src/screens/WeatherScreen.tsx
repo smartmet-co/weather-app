@@ -30,6 +30,7 @@ import { useReloader } from '@utils/reloader';
 import Announcements from '@components/announcements/Announcements';
 import WarningIconsPanel from '@components/warnings/WarningIconsPanel';
 import MeteorologistSnapshot from '@components/weather/MeteorologistSnapshot';
+import EnosLinkPanel from '@components/weather/EnosLinkPanel';
 import { useTranslation } from 'react-i18next';
 
 const mapStateToProps = (state: State) => ({
@@ -81,6 +82,9 @@ const WeatherScreen: React.FC<WeatherScreenProps> = ({
                                     i18n.language === 'fi';
   const showLocalWarnings = warningsConfig.enabled &&
                             Object.keys(warningsConfig.apiUrl).includes(location.country);
+
+  const showEnosLinkPanel = weatherConfig.enosLinkPanel?.url;
+
   const isWideDisplay = () => width > 700;
 
   const updateForecast = useCallback(() => {
@@ -237,6 +241,7 @@ const WeatherScreen: React.FC<WeatherScreenProps> = ({
               { showMeteorologistSnapshot && <MeteorologistSnapshot /> }
             </>
           }
+          { showEnosLinkPanel && <EnosLinkPanel /> }
           <SunAndMoonPanel />
           <View ref={observationRef} collapsable={false}>
             <ObservationPanel />
@@ -262,6 +267,7 @@ const WeatherScreen: React.FC<WeatherScreenProps> = ({
           <Announcements style={styles.announcements} />
           <NextHourForecastPanel currentHour={currentHour} />
           <ForecastPanel currentHour={currentHour}/>
+          { showEnosLinkPanel && <EnosLinkPanel /> }
           <ObservationPanel />
         </ScrollView>
       </View>

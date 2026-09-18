@@ -75,6 +75,11 @@ const defaultConfig: ConfigType = {
       parameters: ['temperature'],
       dailyParameters: ['minimumTemperature', 'maximumTemperature]
     },
+    // Optional: shows a tappable panel on the Weather screen that opens the
+    // ENOS (El Niño) microsite in a full-screen WebView.
+    enosLinkPanel: {
+      url: 'https://example.org/enos-microsite',
+    },
   },
   warnings: {
     enabled: true,
