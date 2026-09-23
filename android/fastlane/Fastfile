@@ -135,7 +135,6 @@ platform :android do
   # Deploy to Google Play Store
   desc "Deploy a new version to the Google Play"
     lane :deploy do
-	  UI.message("ANDROID_PACKAGE_NAME: #{ENV["ANDROID_PACKAGE_NAME"]}")
 	  # Supply via Fastlane supply -command to Google Play Store
 	  supply(package_name: ENV["ANDROID_PACKAGE_NAME"], json_key: ENV["GPLAY_JSON_KEY_FILE"], track: 'internal', release_status: 'draft')
   end
