@@ -106,6 +106,10 @@ const locations = [
 ];
 
 jest.mock('@assets/locations/locations.json', () => locations);
+jest.mock('@assets/locations/timezones.json', () => ({
+  FI: 'Europe/Helsinki',
+  SE: 'Europe/Stockholm',
+}));
 jest.mock('@assets/locations/countries.json', () => [
   {
     id: 'finland',

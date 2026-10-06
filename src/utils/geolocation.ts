@@ -1,10 +1,19 @@
 import locations from '@assets/locations/locations.json';
 import countries from '@assets/locations/countries.json';
+import timezones from '@assets/locations/timezones.json';
 import { getDistance } from 'geolib';
 
 import { Country, Location, SearchLocation } from '@assets/locations/types';
 
-const searchLocations = [] as SearchLocation[];
+// Single in-memory array: locations.json omits `timezone` for countries listed in
+// timezones.json, so restore it here once. Search fields are computed in place.
+const allLocations = locations as SearchLocation[];
+const timezoneByCountry = timezones as Record<string, string>;
+
+allLocations.forEach((location) => {
+  location.timezone = timezoneByCountry[location.country] ?? location.timezone;
+});
+
 let initializedLanguage: string | undefined;
 
 const normalizeText = (value: string) =>
@@ -65,18 +74,11 @@ const getSearchScore = (
 };
 
 export const initSearchLocations = (language: string) => {
-  searchLocations.length = 0;
-
-  (locations as Location[]).forEach((location) => {
-    const searchLocation: SearchLocation = {
-      ...location,
-      searchName: normalizeText(
-        `${location.name[language] || location.name.primary}, ${location.region[language] || location.region.primary}`
-      ),
-      countryName: normalizeText(getCountryName(location.country, language)),
-    };
-
-    searchLocations.push(searchLocation);
+  allLocations.forEach((location) => {
+    location.searchName = normalizeText(
+      `${location.name[language] || location.name.primary}, ${location.region[language] || location.region.primary}`
+    );
+    location.countryName = normalizeText(getCountryName(location.country, language));
   });
   initializedLanguage = language;
 };
@@ -85,11 +87,11 @@ export const search = (query: string, language: string, maxResults = 20) => {
   const normalizedQuery = normalizeText(query).trim();
   if (normalizedQuery.length === 0) return [];
 
-  if (searchLocations.length === 0 || initializedLanguage !== language) {
+  if (initializedLanguage !== language) {
     initSearchLocations(language);
   }
 
-  return searchLocations
+  return allLocations
     .map((location) => ({
       location,
       score: getSearchScore(location, normalizedQuery, language),
@@ -114,7 +116,7 @@ export const findNearestLocation = (
   let nearestPlace: Location | undefined;
   let nearestDistance = Number.POSITIVE_INFINITY;
 
-  (locations as Location[]).forEach((location) => {
+  allLocations.forEach((location) => {
     const distance = getDistance(
       { latitude, longitude },
       { latitude: location.latitude, longitude: location.longitude }
