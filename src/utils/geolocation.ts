@@ -1,4 +1,4 @@
-import locations from '@assets/locations/locations.json';
+import locations from '@assets/locations';
 import countries from '@assets/locations/countries.json';
 import { getDistance } from 'geolib';
 

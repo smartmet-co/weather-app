@@ -105,7 +105,7 @@ const locations = [
   },
 ];
 
-jest.mock('@assets/locations/locations.json', () => locations);
+jest.mock('@assets/locations', () => ({ __esModule: true, default: locations }));
 jest.mock('@assets/locations/countries.json', () => [
   {
     id: 'finland',
