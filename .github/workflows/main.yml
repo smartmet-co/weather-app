@@ -128,6 +128,8 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
+          bundler-cache: true
+          cache-version: 1
 
       # Update bundler
       - name: Update bundler
@@ -234,6 +236,8 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
+          bundler-cache: true
+          cache-version: 1
 
       # Update bundler
       - name: Update bundler
