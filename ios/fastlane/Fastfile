@@ -34,7 +34,11 @@ platform :ios do
      commit_message = options.fetch(:commit_message, "ios: bump build and version number (version code) [skip ci]")
      should_push = options.fetch(:should_push, false)
      package = load_json(json_path: '../package.json')
-     git_pull
+
+    sh("git pull --no-recurse-submodules")
+    sh("git fetch --tags --no-recurse-submodules")
+    sh("git submodule update --init --recursive")
+
      # ensure_git_status_clean if should_commit
      increment_build_number(xcodeproj: XCODE_PROJECT)	   
      increment_version_number(
